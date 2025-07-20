@@ -1,3 +1,34 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=pollen-robotics&project=AmazingHand&lang=id">Bahasa Indonesia</a>
+      </div>
+    </div>
+  </details>
+</div>
+
 Project is licensed under [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 
