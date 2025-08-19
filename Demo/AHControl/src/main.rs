@@ -2,9 +2,7 @@ use clap::Parser;
 // use dora_node_api::{dora_core::config::NodeId, DoraNode, Event};
 
 // use dora_node_api::IntoArrow;
-use dora_node_api::{
-    self, arrow::array::Array, dora_core::config::NodeId, DoraNode, Event, Parameter,
-};
+use dora_node_api::{self, arrow::array::Array, DoraNode, Event, Parameter};
 use eyre::{eyre, Result};
 use rustypot::servo;
 use std::{error::Error, time::Duration};
@@ -175,8 +173,8 @@ fn main() -> Result<(), Box<dyn Error>> {
                 }
                 other => println!("Received input `{other}`"),
             },
-            Event::Stop => {
-                eprintln!("Received manual stop");
+            Event::Stop(stop_cause) => {
+                eprintln!("Received stop: {:?}", stop_cause);
                 return Ok(());
             }
             _ => {}
