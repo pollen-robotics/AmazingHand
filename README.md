@@ -127,11 +127,10 @@ You will need external power supply to be able to power the 8 actuators inside t
 
 If you don't have one already, simple external power supply could be a DC/DC 220V -> 5V / 2A adapter with jack connector.
 Check on the Bom List :
-[AmazingHand BOM](https://docs.google.com/spreadsheets/d/1QH2ePseqXjAhkWdS9oBYAcHPrxaxkSRCgM_kOK0m52E/edit?gid=1269903342#gid=1269903342) 
+[AmazingHand BOM](https://docs.google.com/spreadsheets/d/1QH2ePseqXjAhkWdS9oBYAcHPrxaxkSRCgM_kOK0m52E/edit?gid=1269903342#gid=1269903342)
 
-- Python script : "AmazingHand_Demo.py" [here](https://github.com/pollen-robotics/AmazingHand/tree/main/ArduinoExample)
-  
-- Arduino program : "AmazingHand_Demo.ino" [here](https://github.com/pollen-robotics/AmazingHand/tree/main/PythonExample)
+- Python script : "AmazingHand_Demo.py" [here](https://github.com/pollen-robotics/AmazingHand/tree/main/PythonExample)
+- Arduino program : "AmazingHand_Demo.ino" [here](https://github.com/pollen-robotics/AmazingHand/tree/main/ArduinoExample)
 
 
 https://github.com/user-attachments/assets/485fc1f4-cc57-4e59-90b5-e84518b9fed0
