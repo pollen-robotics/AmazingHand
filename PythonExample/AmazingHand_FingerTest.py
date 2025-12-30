@@ -19,7 +19,8 @@ c = Scs0009PyController(
 def main():
     
 
-    c.write_torque_enable(1, 1) 
+    c.write_torque_enable(ID_1, 1)
+    c.write_torque_enable(ID_2, 1)
     #1 = On / 2 = Off / 3 = Free
     
     while True:

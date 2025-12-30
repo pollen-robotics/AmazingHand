@@ -23,8 +23,11 @@ c = Scs0009PyController(
 
 
 def main():
-    
-    c.write_torque_enable(1, 1)  #1 = On / 2 = Off / 3 = Free
+
+    # Enable torque for all 8 motors
+    for motor_id in range(1, 9):
+        c.write_torque_enable(motor_id, 1)  #1 = On / 2 = Off / 3 = Free
+
     t0 = time.time()
 
     while True:
