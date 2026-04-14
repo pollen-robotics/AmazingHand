@@ -4,7 +4,7 @@ import numpy as np
 from rustypot import Scs0009PyController
 
 #Side
-# 1=>1ight Hand // 2=>2eft Hand
+# 1=> Right Hand // 2=> Left Hand
 
 
 #Speed
