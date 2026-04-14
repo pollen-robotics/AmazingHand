@@ -233,48 +233,23 @@ def Fuck():
         Move_Thumb (75, 0, MaxSpeed)
   
 def Move_Index (Angle_1,Angle_2,Speed):
-    
-    c.write_goal_speed(1, Speed)
-    time.sleep(0.0002)
-    c.write_goal_speed(2, Speed)
-    time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[0]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[1]+Angle_2)
-    c.write_goal_position(1, Pos_1)
-    c.write_goal_position(2, Pos_2)
-    time.sleep(0.005)
+    Move_Finger(1, 2, MiddlePos[0]+Angle_1, MiddlePos[1]+Angle_2, Speed)
 
 def Move_Middle(Angle_1,Angle_2,Speed):    
-    c.write_goal_speed(3, Speed)
-    time.sleep(0.0002)
-    c.write_goal_speed(4, Speed)
-    time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[2]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[3]+Angle_2)
-    c.write_goal_position(3, Pos_1)
-    c.write_goal_position(4, Pos_2)
-    time.sleep(0.005)
+    Move_Finger(3, 4, MiddlePos[2]+Angle_1, MiddlePos[3]+Angle_2, Speed)
 
 def Move_Ring(Angle_1,Angle_2,Speed):    
-    c.write_goal_speed(5, Speed)
-    time.sleep(0.0002)
-    c.write_goal_speed(6, Speed)
-    time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[4]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[5]+Angle_2)
-    c.write_goal_position(5, Pos_1)
-    c.write_goal_position(6, Pos_2)
-    time.sleep(0.005)
+    Move_Finger(5, 6, MiddlePos[4]+Angle_1, MiddlePos[5]+Angle_2, Speed)
 
 def Move_Thumb(Angle_1,Angle_2,Speed):    
-    c.write_goal_speed(7, Speed)
+    Move_Finger(7, 8, MiddlePos[6]+Angle_1, MiddlePos[7]+Angle_2, Speed)
+
+def Move_Finger(ID_1, ID_2, Angle_1_with_offset, Angle_2_with_offset, Speed):
+    c.sync_write_goal_speed([ID_1, ID_2], [Speed, Speed])
     time.sleep(0.0002)
-    c.write_goal_speed(8, Speed)
-    time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[6]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[7]+Angle_2)
-    c.write_goal_position(7, Pos_1)
-    c.write_goal_position(8, Pos_2)
+    Pos_1 = np.deg2rad(Angle_1_with_offset)
+    Pos_2 = np.deg2rad(Angle_2_with_offset)
+    c.sync_write_goal_position([ID_1, ID_2], [Pos_1, Pos_2])
     time.sleep(0.005)
 
 
