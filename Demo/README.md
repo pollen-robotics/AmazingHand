@@ -6,17 +6,19 @@
 - Install dora-rs: https://dora-rs.ai/docs/guides/Installation/installing
   - start the daemon: `dora up`
 
-- Clone this repository and in a console from the directory run:
-- `uv venv --python 3.12`
+- Clone this repository in to a folder, that dora has access to and in a console run:
+- `cd AmazingHand/Demo/`
+- `python3.12 -m venv ./venv`
+- `source venv/bin/activate`
 - To run the webcam hand tracking demo in simulation only:
-  - `dora build dataflow_tracking_simu.yml --uv` (needs to be done only once)
-  - `dora run dataflow_tracking_simu.yml --uv`
+  - `dora build dataflow_tracking_simu.yml` (needs to be done only once)
+  - `dora run dataflow_tracking_simu.yml`
 - To run the webcam hand tracking demo with real hardware:
-  - `dora build dataflow_tracking_real.yml --uv` (needs to be done only once)
-  - `dora run dataflow_tracking_real.yml --uv`
+  - `dora build dataflow_tracking_real.yml` (needs to be done only once)
+  - `dora run dataflow_tracking_real.yml`
 - To run a simple example to control the finger angles in simulation:
-  - `dora build dataflow_angle_simu.yml --uv` (needs to be done only once)
-  - `dora run dataflow_angle_simu.yml --uv`
+  - `dora build dataflow_angle_simu.yml` (needs to be done only once)
+  - `dora run dataflow_angle_simu.yml`
 
 
 ## Hand Setup

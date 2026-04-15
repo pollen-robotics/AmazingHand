@@ -7,6 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "dora-rs>=0.3.11,<=0.3.13",
     "loop-rate-limiters>=1.1.2",
+    "numpy<2",
     "mink>=0.0.11",
     "mujoco>=3.3.2",
     "onshape-to-robot>=1.7.5",

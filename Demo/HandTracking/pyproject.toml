@@ -3,7 +3,7 @@ name = "HandTracking"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.9,<=3.12"
+requires-python = ">=3.9,<3.13"
 dependencies = [
     "dora-rs>=0.3.11,<=0.3.13",
     "loop-rate-limiters>=1.1.2",
