@@ -66,9 +66,6 @@ def main():
         Pinched()
         time.sleep(1)
 
-        Fuck()
-        time.sleep(0.8)
-
 
 def OpenHand():
     Move_Index(-35, 35, MaxSpeed)
@@ -204,20 +201,6 @@ def Scissors():
             time.sleep(0.2)
             Move_Index(-65, 15, MaxSpeed)
             Move_Middle(-15, 65, MaxSpeed)
-
-
-def Fuck():
-    if Side == 1:  # Right Hand
-        Move_Index(90, -90, MaxSpeed)
-        Move_Middle(-35, 35, MaxSpeed)
-        Move_Ring(90, -90, MaxSpeed)
-        Move_Thumb(0, -75, MaxSpeed)
-
-    if Side == 2:  # Left Hand
-        Move_Index(90, -90, MaxSpeed)
-        Move_Middle(-35, 35, MaxSpeed)
-        Move_Ring(90, -90, MaxSpeed)
-        Move_Thumb(75, 0, MaxSpeed)
 
 
 def Move_Index(Angle_1, Angle_2, Speed):
