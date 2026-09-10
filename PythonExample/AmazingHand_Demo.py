@@ -3,33 +3,35 @@ import numpy as np
 
 from rustypot import Scs0009PyController
 
-#Side
-Side = 1 # 1=> Right Hand // 2=> Left Hand
+# Side
+Side = 1  # 1 => Right Hand // 2 => Left Hand
 
-
-#Speed
+# Speed
 MaxSpeed = 7
 CloseSpeed = 3
 
-#Fingers middle poses
-MiddlePos = [3, 0, -5, -8, -2, 5, -12, 0] # replace values by your calibration results
+# Fingers middle poses: [Index_1, Index_2, Middle_1, Middle_2, Ring_1, Ring_2, Thumb_1, Thumb_2]
+MiddlePos = [-5, -3, -5, -10, 2, -4, -10, 8]
 
 c = Scs0009PyController(
-        serial_port="COM11",
-        baudrate=1000000,
-        timeout=0.5,
-    )
-
+    serial_port="COM3",
+    baudrate=1000000,
+    timeout=0.5,
+)
 
 
 def main():
-    
-    c.write_torque_enable(1, 1)  #1 = On / 2 = Off / 3 = Free
-    t0 = time.time()
+    c.write_torque_enable(1, 1)
+    c.write_torque_enable(2, 1)
+    c.write_torque_enable(3, 1)
+    c.write_torque_enable(4, 1)
+    c.write_torque_enable(5, 1)
+    c.write_torque_enable(6, 1)
+    c.write_torque_enable(7, 1)
+    c.write_torque_enable(8, 1)
+    # 1 = On / 2 = Off / 3 = Free
 
     while True:
-        t = time.time() - t0
-
         OpenHand()
         time.sleep(0.5)
 
@@ -51,7 +53,7 @@ def main():
         time.sleep(0.4)
         Nonono()
         time.sleep(0.5)
-        
+
         OpenHand()
         time.sleep(0.3)
 
@@ -72,207 +74,186 @@ def main():
         Pinched()
         time.sleep(1)
 
-        Fuck()
-        time.sleep(0.8)
-
-
-        #trials
-
-        #c.sync_write_raw_goal_position([1,2], [50,50])
-        #time.sleep(1)
-
-        #a=c.read_present_position(1)
-        #b=c.read_present_position(2)
-        #a=np.rad2deg(a)
-        #b=np.rad2deg(b)
-        #print(f'{a} {b}')
-        #time.sleep(0.001)
-
-
 
 def OpenHand():
-    Move_Index (-35,35, MaxSpeed)
-    Move_Middle (-35,35, MaxSpeed)
-    Move_Ring (-35,35, MaxSpeed)
-    Move_Thumb (-35,35, MaxSpeed)
+    Move_Index(-35, 35, MaxSpeed)
+    Move_Middle(-35, 35, MaxSpeed)
+    Move_Ring(-35, 35, MaxSpeed)
+    Move_Thumb(-35, 35, MaxSpeed)
+
 
 def CloseHand():
-    Move_Index (90,-90, CloseSpeed)
-    Move_Middle (90,-90, CloseSpeed)
-    Move_Ring (90,-90, CloseSpeed)
-    Move_Thumb (90,-90, CloseSpeed+1)
+    Move_Index(90, -90, CloseSpeed)
+    Move_Middle(90, -90, CloseSpeed)
+    Move_Ring(90, -90, CloseSpeed)
+    Move_Thumb(90, -90, CloseSpeed + 1)
+
 
 def OpenHand_Progressive():
-    Move_Index (-35,35, MaxSpeed-2)
+    Move_Index(-35, 35, MaxSpeed - 2)
     time.sleep(0.2)
-    Move_Middle (-35,35, MaxSpeed-2)
+    Move_Middle(-35, 35, MaxSpeed - 2)
     time.sleep(0.2)
-    Move_Ring (-35,35, MaxSpeed-2)
+    Move_Ring(-35, 35, MaxSpeed - 2)
     time.sleep(0.2)
-    Move_Thumb (-35,35, MaxSpeed-2)
+    Move_Thumb(-35, 35, MaxSpeed - 2)
+
 
 def SpreadHand():
-    if (Side==1): # Right Hand
-        Move_Index (4, 90, MaxSpeed)
-        Move_Middle (-32, 32, MaxSpeed)
-        Move_Ring (-90, -4, MaxSpeed)
-        Move_Thumb (-90, -4, MaxSpeed)  
-  
-    if (Side==2): # Left Hand
-        Move_Index (-60, 0, MaxSpeed)
-        Move_Middle (-35, 35, MaxSpeed)
-        Move_Ring (-4, 90, MaxSpeed)
-        Move_Thumb (-4, 90, MaxSpeed)  
-  
+    if Side == 1:  # Right Hand
+        Move_Index(4, 90, MaxSpeed)
+        Move_Middle(-32, 32, MaxSpeed)
+        Move_Ring(-90, -4, MaxSpeed)
+        Move_Thumb(-90, -4, MaxSpeed)
+
+    if Side == 2:  # Left Hand
+        Move_Index(-60, 0, MaxSpeed)
+        Move_Middle(-35, 35, MaxSpeed)
+        Move_Ring(-4, 90, MaxSpeed)
+        Move_Thumb(-4, 90, MaxSpeed)
+
+
 def ClenchHand():
-    if (Side==1): # Right Hand
-        Move_Index (-60, 0, MaxSpeed)
-        Move_Middle (-35, 35, MaxSpeed)
-        Move_Ring (0, 70, MaxSpeed)
-        Move_Thumb (-4, 90, MaxSpeed)  
-  
-    if (Side==2): # Left Hand
-        Move_Index (0, 60, MaxSpeed)
-        Move_Middle (-35, 35, MaxSpeed)
-        Move_Ring (-70, 0, MaxSpeed)
-        Move_Thumb (-90, -4, MaxSpeed)
-  
+    if Side == 1:  # Right Hand
+        Move_Index(-60, 0, MaxSpeed)
+        Move_Middle(-35, 35, MaxSpeed)
+        Move_Ring(0, 70, MaxSpeed)
+        Move_Thumb(-4, 90, MaxSpeed)
+
+    if Side == 2:  # Left Hand
+        Move_Index(0, 60, MaxSpeed)
+        Move_Middle(-35, 35, MaxSpeed)
+        Move_Ring(-70, 0, MaxSpeed)
+        Move_Thumb(-90, -4, MaxSpeed)
+
+
 def Index_Pointing():
-    Move_Index (-40, 40, MaxSpeed)
-    Move_Middle (90, -90, MaxSpeed)
-    Move_Ring (90, -90, MaxSpeed)
-    Move_Thumb (90, -90, MaxSpeed)
-  
+    Move_Index(-40, 40, MaxSpeed)
+    Move_Middle(90, -90, MaxSpeed)
+    Move_Ring(90, -90, MaxSpeed)
+    Move_Thumb(90, -90, MaxSpeed)
+
+
 def Nonono():
-  Index_Pointing()
-  for i in range(3) :
+    Index_Pointing()
+    for i in range(3):
         time.sleep(0.2)
-        Move_Index (-10, 80, MaxSpeed)
+        Move_Index(-10, 80, MaxSpeed)
         time.sleep(0.2)
-        Move_Index (-80, 10, MaxSpeed)
-  
-  Move_Index (-35, 35, MaxSpeed)
-  time.sleep(0.4)
-  
+        Move_Index(-80, 10, MaxSpeed)
+
+    Move_Index(-35, 35, MaxSpeed)
+    time.sleep(0.4)
+
+
 def Perfect():
-  if (Side==1): #Right Hand
-        Move_Index (50, -50, MaxSpeed)
-        Move_Middle (0, -0, MaxSpeed)
-        Move_Ring (-20, 20, MaxSpeed)
-        Move_Thumb (65, 12, MaxSpeed)
+    if Side == 1:  # Right Hand
+        Move_Index(50, -50, MaxSpeed)
+        Move_Middle(0, -0, MaxSpeed)
+        Move_Ring(-20, 20, MaxSpeed)
+        Move_Thumb(65, 12, MaxSpeed)
 
-  
-  if (Side==2): #Left Hand
-        Move_Index (50, -50, MaxSpeed)
-        Move_Middle (0, -0, MaxSpeed)
-        Move_Ring (-20, 20, MaxSpeed)
-        Move_Thumb (-12, -65, MaxSpeed)
-  
+    if Side == 2:  # Left Hand
+        Move_Index(50, -50, MaxSpeed)
+        Move_Middle(0, -0, MaxSpeed)
+        Move_Ring(-20, 20, MaxSpeed)
+        Move_Thumb(-12, -65, MaxSpeed)
+
+
 def Victory():
-  if (Side==1): #Right Hand 
-        Move_Index (-15, 65, MaxSpeed)
-        Move_Middle (-65, 15, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (90, -90, MaxSpeed)
+    if Side == 1:  # Right Hand
+        Move_Index(-15, 65, MaxSpeed)
+        Move_Middle(-65, 15, MaxSpeed)
+        Move_Ring(90, -90, MaxSpeed)
+        Move_Thumb(90, -90, MaxSpeed)
 
-  
-  if (Side==2): #Left Hand
-        Move_Index (-65, 15, MaxSpeed)
-        Move_Middle (-15, 65, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (90, -90, MaxSpeed)
-  
+    if Side == 2:  # Left Hand
+        Move_Index(-65, 15, MaxSpeed)
+        Move_Middle(-15, 65, MaxSpeed)
+        Move_Ring(90, -90, MaxSpeed)
+        Move_Thumb(90, -90, MaxSpeed)
+
+
 def Pinched():
-  if (Side==1): #Right Hand
-        Move_Index (90, -90, MaxSpeed)
-        Move_Middle (90, -90, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (0, -75, MaxSpeed)
+    if Side == 1:  # Right Hand
+        Move_Index(90, -90, MaxSpeed)
+        Move_Middle(90, -90, MaxSpeed)
+        Move_Ring(90, -90, MaxSpeed)
+        Move_Thumb(0, -75, MaxSpeed)
 
-  if (Side==2): #Left Hand
-        Move_Index (90, -90, MaxSpeed)
-        Move_Middle (90, -90, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (75, 5, MaxSpeed)
+    if Side == 2:  # Left Hand
+        Move_Index(90, -90, MaxSpeed)
+        Move_Middle(90, -90, MaxSpeed)
+        Move_Ring(90, -90, MaxSpeed)
+        Move_Thumb(75, 5, MaxSpeed)
+
 
 def Scissors():
-  Victory();
-  if (Side==1): #Right Hand
-        for i in range(3):  
-            time.sleep(0.2)
-            Move_Index (-50, 20, MaxSpeed)
-            Move_Middle (-20, 50, MaxSpeed)
-            
-            time.sleep(0.2)
-            Move_Index (-15, 65, MaxSpeed)
-            Move_Middle (-65, 15, MaxSpeed)
-    
-
-  if (Side==2): #Left Hand
+    Victory()
+    if Side == 1:  # Right Hand
         for i in range(3):
             time.sleep(0.2)
-            Move_Index (-20, 50, MaxSpeed)
-            Move_Middle (-50, 20, MaxSpeed)
-            
+            Move_Index(-50, 20, MaxSpeed)
+            Move_Middle(-20, 50, MaxSpeed)
+
             time.sleep(0.2)
-            Move_Index (-65, 15, MaxSpeed)
-            Move_Middle (-15, 65, MaxSpeed)
+            Move_Index(-15, 65, MaxSpeed)
+            Move_Middle(-65, 15, MaxSpeed)
 
-def Fuck():
+    if Side == 2:  # Left Hand
+        for i in range(3):
+            time.sleep(0.2)
+            Move_Index(-20, 50, MaxSpeed)
+            Move_Middle(-50, 20, MaxSpeed)
 
-  if (Side==1): #Right Hand
-        Move_Index (90, -90, MaxSpeed)
-        Move_Middle (-35, 35, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (0, -75, MaxSpeed)
+            time.sleep(0.2)
+            Move_Index(-65, 15, MaxSpeed)
+            Move_Middle(-15, 65, MaxSpeed)
 
-  if (Side==2): #Left Hand
-        Move_Index (90, -90, MaxSpeed)
-        Move_Middle (-35, 35, MaxSpeed)
-        Move_Ring (90, -90, MaxSpeed)
-        Move_Thumb (75, 0, MaxSpeed)
-  
-def Move_Index (Angle_1,Angle_2,Speed):
-    
+
+def Move_Index(Angle_1, Angle_2, Speed):
     c.write_goal_speed(1, Speed)
     time.sleep(0.0002)
     c.write_goal_speed(2, Speed)
     time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[0]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[1]+Angle_2)
+    Pos_1 = np.deg2rad(MiddlePos[0] + Angle_1)
+    Pos_2 = np.deg2rad(MiddlePos[1] + Angle_2)
     c.write_goal_position(1, Pos_1)
     c.write_goal_position(2, Pos_2)
     time.sleep(0.005)
 
-def Move_Middle(Angle_1,Angle_2,Speed):    
+
+def Move_Middle(Angle_1, Angle_2, Speed):
     c.write_goal_speed(3, Speed)
     time.sleep(0.0002)
     c.write_goal_speed(4, Speed)
     time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[2]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[3]+Angle_2)
+    Pos_1 = np.deg2rad(MiddlePos[2] + Angle_1)
+    Pos_2 = np.deg2rad(MiddlePos[3] + Angle_2)
     c.write_goal_position(3, Pos_1)
     c.write_goal_position(4, Pos_2)
     time.sleep(0.005)
 
-def Move_Ring(Angle_1,Angle_2,Speed):    
+
+def Move_Ring(Angle_1, Angle_2, Speed):
     c.write_goal_speed(5, Speed)
     time.sleep(0.0002)
     c.write_goal_speed(6, Speed)
     time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[4]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[5]+Angle_2)
+    Pos_1 = np.deg2rad(MiddlePos[4] + Angle_1)
+    Pos_2 = np.deg2rad(MiddlePos[5] + Angle_2)
     c.write_goal_position(5, Pos_1)
     c.write_goal_position(6, Pos_2)
     time.sleep(0.005)
 
-def Move_Thumb(Angle_1,Angle_2,Speed):    
+
+def Move_Thumb(Angle_1, Angle_2, Speed):
     c.write_goal_speed(7, Speed)
     time.sleep(0.0002)
     c.write_goal_speed(8, Speed)
     time.sleep(0.0002)
-    Pos_1 = np.deg2rad(MiddlePos[6]+Angle_1)
-    Pos_2 = np.deg2rad(MiddlePos[7]+Angle_2)
+    Pos_1 = np.deg2rad(MiddlePos[6] + Angle_1)
+    Pos_2 = np.deg2rad(MiddlePos[7] + Angle_2)
     c.write_goal_position(7, Pos_1)
     c.write_goal_position(8, Pos_2)
     time.sleep(0.005)
@@ -280,6 +261,3 @@ def Move_Thumb(Angle_1,Angle_2,Speed):
 
 if __name__ == '__main__':
     main()
-
-
-
