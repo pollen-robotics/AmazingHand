@@ -22,11 +22,8 @@ c = Scs0009PyController(
 
 def main():
     c.write_torque_enable(1, 1)  # 1 = On / 2 = Off / 3 = Free
-    t0 = time.time()
 
     while True:
-        t = time.time() - t0
-
         OpenHand()
         time.sleep(0.5)
 
@@ -71,18 +68,6 @@ def main():
 
         Fuck()
         time.sleep(0.8)
-
-        # trials
-
-        # c.sync_write_raw_goal_position([1,2], [50,50])
-        # time.sleep(1)
-
-        # a=c.read_present_position(1)
-        # b=c.read_present_position(2)
-        # a=np.rad2deg(a)
-        # b=np.rad2deg(b)
-        # print(f'{a} {b}')
-        # time.sleep(0.001)
 
 
 def OpenHand():
