@@ -11,10 +11,10 @@ MaxSpeed = 7
 CloseSpeed = 3
 
 # Fingers middle poses: [Index_1, Index_2, Middle_1, Middle_2, Ring_1, Ring_2, Thumb_1, Thumb_2]
-MiddlePos = [3, 0, -5, -8, -2, 5, -12, 0]  # replace values by your calibration results
+MiddlePos = [-5, -3, -5, -10, 2, -4, -10, 8]
 
 c = Scs0009PyController(
-    serial_port="COM11",
+    serial_port="COM3",
     baudrate=1000000,
     timeout=0.5,
 )
