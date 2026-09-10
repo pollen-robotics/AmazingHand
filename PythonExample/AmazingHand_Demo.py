@@ -21,7 +21,15 @@ c = Scs0009PyController(
 
 
 def main():
-    c.write_torque_enable(1, 1)  # 1 = On / 2 = Off / 3 = Free
+    c.write_torque_enable(1, 1)
+    c.write_torque_enable(2, 1)
+    c.write_torque_enable(3, 1)
+    c.write_torque_enable(4, 1)
+    c.write_torque_enable(5, 1)
+    c.write_torque_enable(6, 1)
+    c.write_torque_enable(7, 1)
+    c.write_torque_enable(8, 1)
+    # 1 = On / 2 = Off / 3 = Free
 
     while True:
         OpenHand()
