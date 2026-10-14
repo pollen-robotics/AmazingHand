@@ -1,0 +1,34 @@
+<launch>
+  <arg name="namespace" default="amazing_hand" doc="Namespace for the hand nodes, controllers, topics, and parameters"/>
+  <!-- Required: never silently use another hand's calibration. -->
+  <arg name="middle_pos" doc="Eight angles in degrees, YAML list, ascending physical servo ID order"/>
+  <arg name="side" default="1"/>
+  <arg name="servo_ids" default="$(eval '[1,2,3,4,5,6,7,8]' if int(arg('side')) == 1 else '[15,16,13,14,11,12,17,18]')"/>
+  <arg name="port" default="/dev/ttyACM0"/>
+  <arg name="baudrate" default="1000000"/>
+  <arg name="serial_timeout" default="0.05"/>
+  <arg name="control_rate" default="50"/>
+  <arg name="goal_speed" default="3.0"/>
+  <arg name="motor_min_deg" default="-90"/>
+  <arg name="motor_max_deg" default="90"/>
+  <arg name="disable_torque_on_shutdown" default="true"/>
+  <group ns="$(arg namespace)">
+    <param name="robot_description" command="$(find xacro)/xacro '$(find amazing_hand_ros)/urdf/amazing_hand.urdf.xacro'"/>
+    <rosparam command="load" file="$(find amazing_hand_ros)/config/controllers.yaml"/>
+    <node pkg="amazing_hand_ros" type="amazing_hand_node" name="amazing_hand" output="screen" required="true">
+      <rosparam param="middle_pos" subst_value="true">$(arg middle_pos)</rosparam>
+      <rosparam param="servo_ids" subst_value="true">$(arg servo_ids)</rosparam>
+      <param name="side" value="$(arg side)"/>
+      <param name="port" value="$(arg port)"/>
+      <param name="baudrate" value="$(arg baudrate)"/>
+      <param name="serial_timeout" value="$(arg serial_timeout)"/>
+      <param name="control_rate" value="$(arg control_rate)"/>
+      <param name="goal_speed" value="$(arg goal_speed)"/>
+      <param name="motor_min_deg" value="$(arg motor_min_deg)"/>
+      <param name="motor_max_deg" value="$(arg motor_max_deg)"/>
+      <param name="disable_torque_on_shutdown" value="$(arg disable_torque_on_shutdown)"/>
+    </node>
+    <node pkg="controller_manager" type="spawner" name="controller_spawner"
+          args="joint_state_controller position_joint_trajectory_controller" output="screen"/>
+  </group>
+</launch>

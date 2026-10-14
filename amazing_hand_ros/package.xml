@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>amazing_hand_ros</name>
+  <version>0.1.0</version>
+  <description>ROS 1 ros_control driver for AmazingHand with normalized finger coordinates.</description>
+  <maintainer email="pazeshunai@todo.todo">pazeshunai</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>catkin</buildtool_depend>
+  <depend>roscpp</depend>
+  <depend>hardware_interface</depend>
+  <depend>controller_manager</depend>
+  <depend>transmission_interface</depend>
+  <depend>urdf</depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>joint_trajectory_controller</exec_depend>
+  <exec_depend>roslaunch</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <test_depend>rostest</test_depend>
+  <test_depend>rospy</test_depend>
+  <test_depend>actionlib</test_depend>
+  <test_depend>control_msgs</test_depend>
+  <test_depend>trajectory_msgs</test_depend>
+  <test_depend>sensor_msgs</test_depend>
+  <test_depend>controller_manager_msgs</test_depend>
+</package>

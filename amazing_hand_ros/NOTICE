@@ -1,0 +1,9 @@
+This package contains a minimal C++ adaptation of SCS0009 conversions and
+protocol-v1 packet handling from pollen-robotics/rustypot (Apache-2.0):
+https://github.com/pollen-robotics/rustypot
+Revision c564b12420815f6afcc592ff897d1c0175776ff3
+  src/servo/feetech/scs0009.rs
+  src/dynamixel_protocol/v1.rs
+The C++ transport, ROS integration and tests were written for this package.
+Only position conversion, positive speed conversion, READ and SYNC_WRITE
+are implemented. rustypot is not a build or runtime dependency.
