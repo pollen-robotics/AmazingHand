@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="amazinghand_link" params="name link_data covers">
+    <link name="${name}">
+      <inertial>
+        <origin xyz="${link_data.inertia.xyz}" rpy="${link_data.inertia.rpy}"/>
+        <mass value="${link_data.inertia.mass}"/>
+        <inertia ixx="${link_data.inertia.tensor[0]}" iyy="${link_data.inertia.tensor[1]}" izz="${link_data.inertia.tensor[2]}"
+                 ixy="${link_data.inertia.tensor[3]}" ixz="${link_data.inertia.tensor[4]}" iyz="${link_data.inertia.tensor[5]}"/>
+      </inertial>
+      <xacro:property name="visuals" value="${[v for v in link_data.visuals if covers or not v.file.endswith('_Shell.stl')]}"/>
+      <xacro:mesh_visuals parts="${visuals}"/>
+      <xacro:mesh_collisions parts="${link_data.get('collisions', [])}"/>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="mesh_visuals" params="parts">
+    <xacro:if value="${len(parts) > 0}">
+      <xacro:property name="part" value="${parts[0]}"/>
+      <visual>
+        <origin xyz="${part['xyz']}" rpy="${part['rpy']}"/>
+        <geometry><mesh filename="package://amazing_hand_description/meshes/${part['file']}" scale="${part['scale']}"/></geometry>
+        <material name="${part['file']}"><color rgba="${part['rgba']}"/></material>
+      </visual>
+      <xacro:mesh_visuals parts="${parts[1:]}"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="mesh_collisions" params="parts">
+    <xacro:if value="${len(parts) > 0}">
+      <xacro:property name="part" value="${parts[0]}"/>
+      <collision>
+        <origin xyz="${part['xyz']}" rpy="${part['rpy']}"/>
+        <geometry><mesh filename="package://amazing_hand_description/meshes/${part['file']}" scale="${part['scale']}"/></geometry>
+      </collision>
+      <xacro:mesh_collisions parts="${parts[1:]}"/>
+    </xacro:if>
+  </xacro:macro>
+
+  <xacro:macro name="amazinghand_finger"
+               params="hand_name finger_name chirality parent finger_data covers">
+
+    <xacro:property name="jname"   value="${hand_name}_${finger_name}" />
+    <xacro:property name="flex_j"  value="${jname}_flexion" />
+    <xacro:property name="abd_j"   value="${jname}_abduction" />
+    <!-- The CAD reference is the zero-motor pose, at flexion_level = 1/3. -->
+    <xacro:property name="flexion_scale" value="${pi / 2}"/>
+    <xacro:property name="flexion_offset" value="${-flexion_scale / 3}"/>
+    <xacro:property name="abduction_sign" value="${-1 if chirality == 'left' else 1}"/>
+
+    <xacro:amazinghand_link name="${jname}_base_link" link_data="${finger_data.gimbal}" covers="${covers}"/>
+
+    <!-- Proximal phalanx -->
+    <xacro:amazinghand_link name="${jname}_proximal_link" link_data="${finger_data.proximal}" covers="${covers}"/>
+
+    <!-- Distal phalanx -->
+    <xacro:amazinghand_link name="${jname}_distal_link" link_data="${finger_data.distal}" covers="${covers}"/>
+    <xacro:amazinghand_link name="${jname}_coupler_link" link_data="${finger_data.coupler}" covers="${covers}"/>
+    <link name="${jname}_tip_link"/>
+
+    <link name="${jname}_mount_link"/>
+    <!-- Parent base joint (fixed, positional offset on the palm)         -->
+    <joint name="${jname}_mount_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child  link="${jname}_mount_link"/>
+      <origin xyz="${finger_data.abduction.xyz}" rpy="${finger_data.abduction.rpy}"/>
+    </joint>
+
+    <!-- Abduction joint (lateral spread around the mount Z axis) -->
+    <joint name="${abd_j}" type="revolute">
+      <parent link="${jname}_mount_link"/>
+      <child link="${jname}_base_link"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <axis xyz="0 0 ${abduction_sign}"/>
+      <limit lower="-0.5236" upper="0.5236" effort="1.0" velocity="3.14"/>
+      <dynamics damping="0.01"/>
+      <mimic joint="${finger_name}_abduction_level" multiplier="0.5236"/>
+    </joint>
+
+    <!-- Flexion joint (curl around the joint's local Z axis) -->
+    <joint name="${flex_j}" type="revolute">
+      <parent link="${jname}_base_link"/>
+      <child link="${jname}_proximal_link"/>
+      <origin xyz="${finger_data.flexion.xyz}" rpy="${finger_data.flexion.rpy}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.5708" upper="1.5708" effort="1.0" velocity="3.14"/>
+      <mimic joint="${finger_name}_flexion_level" multiplier="${flexion_scale}" offset="${flexion_offset}"/>
+      <dynamics damping="0.01"/>
+    </joint>
+
+    <!-- Drive each visual hinge from the published flexion level so TF does
+         not depend on the order in which mimic joints are evaluated. -->
+    <joint name="${jname}_distal_hinge" type="revolute">
+      <parent link="${jname}_proximal_link"/>
+      <child link="${jname}_distal_link"/>
+      <origin xyz="${finger_data.distal_joint.xyz}" rpy="${finger_data.distal_joint.rpy}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-1.5708 * finger_data.distal_ratio}" upper="${1.5708 * finger_data.distal_ratio}"
+             effort="1.0" velocity="${3.14 * finger_data.distal_ratio}"/>
+      <mimic joint="${finger_name}_flexion_level" multiplier="${flexion_scale * finger_data.distal_ratio}" offset="${flexion_offset * finger_data.distal_ratio}"/>
+    </joint>
+    <joint name="${jname}_coupler_hinge" type="revolute">
+      <parent link="${jname}_base_link"/>
+      <child link="${jname}_coupler_link"/>
+      <origin xyz="${finger_data.coupler_joint.xyz}" rpy="${finger_data.coupler_joint.rpy}"/>
+      <axis xyz="${finger_data.coupler_axis}"/>
+      <limit lower="${-1.5708 * finger_data.coupler_ratio}" upper="${1.5708 * finger_data.coupler_ratio}"
+             effort="1.0" velocity="${3.14 * finger_data.coupler_ratio}"/>
+      <mimic joint="${finger_name}_flexion_level" multiplier="${flexion_scale * finger_data.coupler_ratio}" offset="${flexion_offset * finger_data.coupler_ratio}"/>
+    </joint>
+    <joint name="${jname}_tip_joint" type="fixed">
+      <parent link="${jname}_distal_link"/>
+      <child link="${jname}_tip_link"/>
+      <origin xyz="${finger_data.tip.xyz}" rpy="${finger_data.tip.rpy}"/>
+    </joint>
+
+  </xacro:macro>
+</robot>

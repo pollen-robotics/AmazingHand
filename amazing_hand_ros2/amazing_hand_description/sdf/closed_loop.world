@@ -1,0 +1,20 @@
+<sdf version="1.6">
+  <world name="default">
+    <physics type="ode" name="closed_loop">
+      <max_step_size>0.00025</max_step_size>
+      <real_time_update_rate>4000</real_time_update_rate>
+      <ode>
+        <solver>
+          <type>world</type>
+        </solver>
+        <constraints>
+          <cfm>0.00001</cfm>
+          <erp>0.2</erp>
+        </constraints>
+      </ode>
+    </physics>
+    <light type="directional" name="light">
+      <direction>-0.4 0.4 -1</direction>
+    </light>
+  </world>
+</sdf>
