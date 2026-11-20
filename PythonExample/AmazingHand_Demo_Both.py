@@ -8,7 +8,8 @@ from rustypot import Scs0009PyController
 
 
 #Speed
-MaxSpeed = 7
+# Right-hand hardware test: 6.9 rad/s completed a cycle; 7.0 rad/s failed.
+MaxSpeed = 6.9
 CloseSpeed = 3
 
 #Fingers middle poses

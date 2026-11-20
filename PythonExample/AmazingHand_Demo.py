@@ -8,7 +8,12 @@ Side = 1 # 1=> Right Hand // 2=> Left Hand
 
 
 #Speed
-MaxSpeed = 7
+# Right-hand test (2026-11-20), all eight servos commanded together:
+# 6.9 rad/s was the highest speed tested that completed one open-close cycle.
+# At 7.0 rad/s, closing and opening failed in separate trials. During the
+# opening trial, thumb servo ID 8 reported 5.2 V before motion and 4.3 V
+# with error 0x01 about 0.05 s after the command.
+MaxSpeed = 6.9
 CloseSpeed = 3
 
 #Fingers middle poses
