@@ -1,0 +1,5 @@
+repositories:
+  feetech_ros2_driver:
+    type: git
+    url: https://github.com/Michi-Tsubaki/feetech_ros2_driver.git
+    version: 7cf5b060330610dd0a850351cca738c44902a481

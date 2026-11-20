@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="namespace" default="amazing_hand"/>
+  <arg name="use_sim" default="false"/>
+  <let name="hand_namespace" value="$(eval &quot;'$(var namespace)'.strip('/')&quot;)"/>
+  <node pkg="rviz2" exec="rviz2" namespace="/$(var hand_namespace)"
+        launch-prefix="'$(exec-in-pkg hand_rviz_config amazing_hand_driver)'">
+    <env name="HAND_RVIZ_NAMESPACE" value="$(var hand_namespace)"/>
+    <param name="use_sim_time" value="$(var use_sim)" type="bool"/>
+  </node>
+</launch>
