@@ -6,7 +6,8 @@ SCSCL sc;
 int Side = 1; // replace "1" by "2" for left hand
 
 //Speed 
-int MaxSpeed =1500;
+// Right-hand hardware test: 6.9 rad/s completed a cycle; 7.0 rad/s failed.
+int MaxSpeed = 1349; // 6.9 rad/s in servo counts per second
 int CloseSpeed =750;
 
 //Fingers middle poses 
