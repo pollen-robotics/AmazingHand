@@ -1,0 +1,725 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="amazinghand_right">
+  <!--Pollen Robotics AmazingHand CAD export, revision 3e8241074df3436a3044ced4881e3bb2133aa725. Adaptations are listed in README.md (AmazingHand models).-->
+  <compiler angle="radian" meshdir="../meshes" autolimits="true" />
+  <default>
+    <default class="mjcf">
+      <joint frictionloss="0.1" armature="0.005" />
+      <position kp="50" dampratio="1" />
+      <default class="visual">
+        <geom type="mesh" contype="0" conaffinity="0" group="2" />
+      </default>
+      <default class="collision">
+        <geom group="3" />
+      </default>
+    </default>
+  </default>
+  <default>
+    <equality solref="0.002 1" solimp="0.99 0.999 0.0005 0.5 2" />
+  </default>
+  <worldbody>
+    <!-- Link r_wrist_interface -->
+    <body name="r_wrist_interface" pos="0 0 0" quat="1 0 0 0" childclass="mjcf">
+      <inertial pos="-0.006 0 0.048" mass="0.29" fullinertia="0.00037 0.00029 0.00030 0 0 0" />
+      <!-- Part scs0009 -->
+      <geom type="mesh" class="visual" pos="-0.022075 0.03055 0.0698" quat="0.707107 1.17211e-16 -4.71845e-16 0.707107" mesh="scs0009" material="scs0009_material" />
+      <!-- Part finger_frame_1 -->
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="finger_frame_1" material="finger_frame_1_material" />
+      <!-- Part r_hand_plate -->
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="r_hand_plate" material="r_hand_plate_material" />
+      <!-- Part scs0009_2 -->
+      <geom type="mesh" class="visual" pos="-0.00443741 0.0191037 0.019125" quat="0.579228 -0.579228 0.40558 -0.40558" mesh="scs0009" material="scs0009_material" />
+      <!-- Part finger_frame_2 -->
+      <geom type="mesh" class="visual" pos="-0.0115 -0.0083 0.0961543" quat="0.473147 0.525483 -0.473147 -0.525483" mesh="finger_frame_2" material="finger_frame_2_material" />
+      <!-- Part finger_frame_2_2 -->
+      <geom type="mesh" class="visual" pos="-0.0115 -0.0405 0.0851417" quat="0.437766 0.555303 -0.437766 -0.555303" mesh="finger_frame_2" material="finger_frame_2_material" />
+      <!-- Part bushing_0608_04 -->
+      <geom type="mesh" class="visual" pos="-0.015 -0.0083 0.0961543" quat="0.525483 -0.473147 0.525483 -0.473147" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part bushing_0608_04_2 -->
+      <geom type="mesh" class="visual" pos="-0.015 0.0245 0.1022" quat="0.5 -0.5 0.5 -0.5" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part bushing_0608_04_3 -->
+      <geom type="mesh" class="visual" pos="-0.015 -0.0405 0.0851417" quat="0.555303 -0.437766 0.555303 -0.437766" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part bushing_0608_04_4 -->
+      <geom type="mesh" class="visual" pos="-0.025 -0.0083 0.0961543" quat="0.473147 0.525483 -0.473147 -0.525483" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part finger_frame_2_3 -->
+      <geom type="mesh" class="visual" pos="0.0280778 0.0245 0.0297" quat="3.51037e-16 0.573576 0.819152 7.48307e-16" mesh="finger_frame_2" material="finger_frame_2_material" />
+      <!-- Part scs0009_3 -->
+      <geom type="mesh" class="visual" pos="-0.022075 -0.0109301 0.0632994" quat="0.706138 0.0370071 -0.0370071 0.706138" mesh="scs0009" material="scs0009_material" />
+      <!-- Part scs0009_4 -->
+      <geom type="mesh" class="visual" pos="-0.022075 0.01845 0.0698" quat="0.707107 9.10276e-17 -3.92048e-16 0.707107" mesh="scs0009" material="scs0009_material" />
+      <!-- Part finger_frame_2_4 -->
+      <geom type="mesh" class="visual" pos="-0.0109 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="finger_frame_2" material="finger_frame_2_material" />
+      <!-- Part scs0009_5 -->
+      <geom type="mesh" class="visual" pos="-0.022075 0.00110358 0.0645642" quat="0.706138 0.0370071 -0.0370071 0.706138" mesh="scs0009" material="scs0009_material" />
+      <!-- Part scs0009_6 -->
+      <geom type="mesh" class="visual" pos="-0.022075 -0.0388192 0.0522246" quat="0.702205 0.0831115 -0.0831115 0.702205" mesh="scs0009" material="scs0009_material" />
+      <!-- Part finger_frame_1_2 -->
+      <geom type="mesh" class="visual" pos="-0.0115 -0.0083 0.0961543" quat="0.473147 0.525483 -0.473147 -0.525483" mesh="finger_frame_1" material="finger_frame_1_material" />
+      <!-- Part bushing_0608_04_5 -->
+      <geom type="mesh" class="visual" pos="0.0280778 0.0245 0.0262" quat="0.573576 -4.6886e-16 -6.93889e-16 0.819152" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part scs0009_7 -->
+      <geom type="mesh" class="visual" pos="-0.022075 -0.0270535 0.0550493" quat="0.702205 0.0831115 -0.0831115 0.702205" mesh="scs0009" material="scs0009_material" />
+      <!-- Part r_wrist_interface -->
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="r_wrist_interface" material="r_wrist_interface_material" />
+      <!-- Part scs0009_8 -->
+      <geom type="mesh" class="visual" pos="-0.000298971 0.00773341 0.019125" quat="0.579228 -0.579228 0.40558 -0.40558" mesh="scs0009" material="scs0009_material" />
+      <!-- Part bushing_0608_04_6 -->
+      <geom type="mesh" class="visual" pos="-0.025 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part bushing_0608_04_7 -->
+      <geom type="mesh" class="visual" pos="-0.025 -0.0405 0.0851417" quat="0.437766 0.555303 -0.437766 -0.555303" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part bushing_0608_04_8 -->
+      <geom type="mesh" class="visual" pos="0.0280778 0.0245 0.0162" quat="3.37101e-16 0.573576 0.819152 4.75257e-16" mesh="bushing_0608_04" material="bushing_0608_04_material" />
+      <!-- Part finger_frame_1_3 -->
+      <geom type="mesh" class="visual" pos="-0.0115 -0.0405 0.0851417" quat="0.437766 0.555303 -0.437766 -0.555303" mesh="finger_frame_1" material="finger_frame_1_material" />
+      <!-- Part finger_frame_1_4 -->
+      <geom type="mesh" class="visual" pos="0.0280778 0.0245 0.0297" quat="5.83086e-16 0.573576 0.819152 6.68824e-16" mesh="finger_frame_1" material="finger_frame_1_material" />
+      <!-- Frame closing_1 (1)_2 -->
+      <site group="3" name="closing_1 (1)_2" pos="-0.015 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" />
+      <!-- Frame closing_1 (1)_2_z -->
+      <site group="3" name="closing_1 (1)_2_z" pos="-0.115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" />
+      <!-- Frame closing_1 (2)_2 -->
+      <site group="3" name="closing_1 (2)_2" pos="-0.015 -0.0083 0.0961543" quat="0.473147 0.525483 -0.473147 -0.525483" />
+      <!-- Frame closing_1 (2)_2_z -->
+      <site group="3" name="closing_1 (2)_2_z" pos="-0.115 -0.0083 0.0961543" quat="0.473147 0.525483 -0.473147 -0.525483" />
+      <!-- Frame closing_1 (3)_2 -->
+      <site group="3" name="closing_1 (3)_2" pos="-0.015 -0.0405 0.0851417" quat="0.437766 0.555303 -0.437766 -0.555303" />
+      <!-- Frame closing_1 (3)_2_z -->
+      <site group="3" name="closing_1 (3)_2_z" pos="-0.115 -0.0405 0.0851417" quat="0.437766 0.555303 -0.437766 -0.555303" />
+      <!-- Frame closing_1 (4)_2 -->
+      <site group="3" name="closing_1 (4)_2" pos="0.0280778 0.0245 0.0262" quat="4.8152e-16 0.573576 0.819152 7.27392e-16" />
+      <!-- Frame closing_1 (4)_2_z -->
+      <site group="3" name="closing_1 (4)_2_z" pos="0.0280778 0.0245 -0.0738" quat="4.8152e-16 0.573576 0.819152 7.27392e-16" />
+      <!-- Link custom_servo_horn -->
+      <body name="custom_servo_horn" pos="-0.00755 0.03055 0.0698" quat="0.5 0.5 -0.5 -0.5">
+        <!-- Joint from r_wrist_interface to custom_servo_horn -->
+        <joint axis="0 0 1" name="finger1_motor1" type="hinge" range="-1.570796326768256 1.570796326821537" />
+        <inertial pos="-0.005 1.45507e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -5.13695e-25 3.61104e-25 -1.47358e-24" />
+        <!-- Part rotule_ball -->
+        <geom type="mesh" class="visual" pos="-0.005 1.38778e-17 -0.0069" quat="1 9.70811e-17 -3.33067e-16 3.07803e-16" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed -->
+        <geom type="mesh" class="visual" pos="-0.005 1.38778e-17 -0.0114" quat="7.85046e-17 0.707107 0.707107 -3.92523e-17" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Part custom_servo_horn -->
+        <geom type="mesh" class="visual" pos="0 1.38778e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Link ball_link -->
+        <body name="ball_link" pos="-0.005 1.94289e-16 -0.0069" quat="0.00510149 -0.888984 0.0544589 0.454661">
+          <!-- Joint from custom_servo_horn to ball_link -->
+          <joint axis="0 0 1" name="passive_ball1" type="ball" />
+          <inertial pos="-1.37305e-13 -0.0165 -1.37299e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66021e-19 -4.97671e-14 -6.66027e-19" />
+          <!-- Part rotule_lever -->
+          <geom type="mesh" class="visual" pos="-1.04083e-17 -0.033 0" quat="3.72849e-17 0.707107 -1.11022e-16 0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_2 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 0 0" quat="1 -2.5004e-17 8.32667e-17 7.15021e-17" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18 -->
+          <geom type="mesh" class="visual" pos="6.93889e-18 -0.03325 -2.77556e-17" quat="1.09147e-16 -7.67682e-17 1.11022e-16 1" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer -->
+          <geom type="mesh" class="visual" pos="-6.93889e-18 -0.033 0" quat="4.72421e-17 -1.26898e-16 -3.33067e-16 1" mesh="spacer" material="spacer_material" />
+          <!-- Link rotule_ball -->
+          <body name="rotule_ball" pos="-1.04083e-17 -0.033 0" quat="0.707107 -1.63345e-17 -0.707107 2.5537e-16">
+            <!-- Joint from ball_link to rotule_ball -->
+            <joint axis="0 0 1" name="passive_ball2" type="ball" />
+            <inertial pos="-0.0054579 -0.0141744 -0.00370248" mass="0.00277119" fullinertia="7.66485e-07 1.05617e-07 7.96842e-07 1.1411e-07 -1.27899e-08 -3.77417e-08" />
+            <!-- Part link -->
+            <geom type="mesh" class="visual" pos="-0.0129642 -0.00307086 0.00472763" quat="0.125545 0.283636 0.223238 -0.924096" mesh="link" material="link_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_2 -->
+            <geom type="mesh" class="visual" pos="0.0036341 0.000474272 0.0026112" quat="0.778258 -0.271383 0.369077 -0.429475" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part rotule_ball_2 -->
+            <geom type="mesh" class="visual" pos="0 0 3.46945e-18" quat="0.0690799 -0.853996 -0.246627 0.452874" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_3 -->
+            <geom type="mesh" class="visual" pos="-0.0166361 -0.00217111 -0.0119535" quat="0.271383 0.778258 -0.429475 -0.369077" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part rotule_ball_3 -->
+            <geom type="mesh" class="visual" pos="-0.013002 -0.00169684 -0.0093423" quat="0.853996 0.0690799 0.452874 0.246627" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Frame closing_ball1_2 -->
+            <site group="3" name="closing_ball1_2" pos="-0.013002 -0.00169684 -0.0093423" quat="0.778258 -0.271383 0.369077 -0.429475" />
+            <!-- Link std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default -->
+            <body name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" pos="-0.0116897 -0.000368272 -0.00081146" quat="0.778258 -0.271383 0.369077 -0.429475">
+              <!-- Joint from rotule_ball to std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default -->
+              <joint axis="0 0 1" name="passive2 (1)" type="hinge" />
+              <inertial pos="-0.00530874 -0.00868244 0.00225" mass="0.00201325" fullinertia="9.34482e-08 4.69015e-08 1.16807e-07 -4.54529e-08 -5.37151e-21 1.88891e-21" />
+              <!-- Part std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default -->
+              <geom type="mesh" class="visual" pos="-0.0113198 -0.0185136 0.00225" quat="0.616776 -0.345814 0.616776 0.345814" mesh="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" material="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_material" />
+              <!-- Part gimbal -->
+              <geom type="mesh" class="visual" pos="-0.0031299 -0.00511895 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="gimbal" material="gimbal_material" />
+              <!-- Part plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5 -->
+              <geom type="mesh" class="visual" pos="-0.0103287 -0.0168926 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5" material="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999 -->
+              <geom type="mesh" class="visual" pos="8.32667e-17 -4.85723e-17 0.00225" quat="0.872253 2.80913e-14 1.12133e-14 0.489055" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Frame closing_1 (1)_1 -->
+              <site group="3" name="closing_1 (1)_1" pos="-0.00495568 -0.00810501 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_1 (1)_1_z -->
+              <site group="3" name="closing_1 (1)_1_z" pos="-0.0571208 -0.0934209 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_3 (1)_2 -->
+              <site group="3" name="closing_3 (1)_2" pos="-0.0031299 -0.00511895 -0.00275" quat="0.96259 1.20772e-14 2.77001e-14 -0.270962" />
+              <!-- Frame closing_3 (1)_2_z -->
+              <site group="3" name="closing_3 (1)_2_z" pos="-0.0031299 -0.00511895 0.09725" quat="0.96259 1.20772e-14 2.77001e-14 -0.270962" />
+            </body>
+            <!-- Link parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999 -->
+            <body name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" pos="0.00373407 -0.0482013 -0.00704062" quat="0.271383 0.778258 -0.429475 -0.369077">
+              <!-- Joint from rotule_ball to parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999 -->
+              <joint axis="0 0 1" name="passive4 (1)" type="hinge" />
+              <inertial pos="0.014571 -0.0133924 0.00225" mass="0.00540375" fullinertia="3.60212e-07 5.51031e-07 7.69492e-07 3.36413e-07 4.59414e-20 6.20919e-20" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 -0.00735" quat="0.870159 6.45235e-15 -4.26603e-14 0.49277" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_2 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 0.01185" quat="5.40609e-15 -0.870159 -0.49277 -2.95972e-14" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part distal -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal" material="distal_material" />
+              <!-- Part distal_shell -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" material="distal_shell_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_2 -->
+              <geom type="mesh" class="visual" pos="5.55112e-17 6.93889e-17 0.00225" quat="3.44594e-14 -0.49277 0.870159 4.55847e-15" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Frame tip1 -->
+              <site group="3" name="tip1" pos="0.0272563 -0.0277177 0.00225" quat="0.335723 -0.335723 0.622326 -0.622326" />
+              <!-- Link parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b -->
+              <body name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" pos="-0.000346366 -0.00598999 0.00655" quat="1.92225e-14 -0.999998 -0.00198164 -2.35427e-14">
+                <!-- Joint from parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999 to parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b -->
+                <joint axis="0 0 1" name="passive_5 (1)" type="hinge" />
+                <inertial pos="-0.0249171 -0.00392936 0.0052354" mass="0.0101851" fullinertia="4.96149e-07 2.52849e-06 2.3577e-06 2.45138e-08 1.19032e-10 3.03943e-10" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_3 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 -0.00655" quat="0.707107 6.63882e-17 -1.66533e-16 -0.707107" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_4 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 0.01685" quat="2.62977e-17 -0.707107 0.707107 -1.94944e-16" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b -->
+                <geom type="mesh" class="visual" pos="-0.052 0 0.00515" quat="0.707107 -5.62433e-17 5.55112e-17 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_2 -->
+                <geom type="mesh" class="visual" pos="-5.55112e-17 -4.16334e-17 0.00515" quat="0.707107 -1.11937e-17 -1.66533e-16 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part proximal_shell -->
+                <geom type="mesh" class="visual" pos="-0.052 -1.38778e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" material="proximal_shell_material" />
+                <!-- Part proximal -->
+                <geom type="mesh" class="visual" pos="-0.052 1.38778e-17 0.00525" quat="0.5 0.5 0.5 -0.5" mesh="proximal" material="proximal_material" />
+                <!-- Frame closing_3 (1)_1 -->
+                <site group="3" name="closing_3 (1)_1" pos="-0.052 1.38778e-17 0" quat="1 0 -8.67362e-19 -8.27993e-17" />
+                <!-- Frame closing_3 (1)_1_z -->
+                <site group="3" name="closing_3 (1)_1_z" pos="-0.052 2.77556e-17 0.1" quat="1 0 -8.67362e-19 -8.27993e-17" />
+                <geom type="mesh" class="visual" pos="-0.052 -1.38778e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+              </body>
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link rotule_ball_2 -->
+      <body name="rotule_ball_2" pos="-0.00755 0.01845 0.0698" quat="0.5 -0.5 -0.5 0.5">
+        <!-- Joint from r_wrist_interface to rotule_ball_2 -->
+        <joint axis="0 0 1" name="finger1_motor2" type="hinge" range="-1.5707963267948883 1.5707963267949048" />
+        <inertial pos="-0.005 2.84284e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -1.2178e-24 2.21903e-24 1.16352e-24" />
+        <!-- Part custom_servo_horn_2 -->
+        <geom type="mesh" class="visual" pos="0 1.38778e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Part rotule_ball_4 -->
+        <geom type="mesh" class="visual" pos="-0.005 2.77556e-17 -0.0069" quat="1 2.18422e-15 -2.10942e-15 2.24055e-15" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_4 -->
+        <geom type="mesh" class="visual" pos="-0.005 2.77556e-17 -0.0114" quat="4.64559e-17 0.707107 0.707107 -7.93384e-17" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Link m2_rod_l18 -->
+        <body name="m2_rod_l18" pos="-0.005 0 -0.0069" quat="0.413519 -0.0282313 0.909382 0.0350781">
+          <!-- Joint from rotule_ball_2 to m2_rod_l18 -->
+          <joint axis="0 0 1" name="passive_ball3" type="ball" />
+          <inertial pos="-1.37295e-13 -0.0165 -1.373e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66042e-19 -4.97671e-14 -6.66032e-19" />
+          <!-- Part rotule_lever_3 -->
+          <geom type="mesh" class="visual" pos="0 1.38778e-17 0" quat="1 0 1.11022e-16 -7.71452e-17" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part spacer_2 -->
+          <geom type="mesh" class="visual" pos="0 1.38778e-17 0" quat="0.707107 -1.37355e-17 0.707107 3.32697e-16" mesh="spacer" material="spacer_material" />
+          <!-- Part m2_rod_l18_2 -->
+          <geom type="mesh" class="visual" pos="1.9082e-17 0.00025 -9.1073e-18" quat="0.707107 -4.03499e-17 0.707107 3.8517e-18" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part rotule_lever_4 -->
+          <geom type="mesh" class="visual" pos="1.12757e-17 -0.033 -3.90313e-18" quat="1.0137e-18 -0.707107 -0 -0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Frame closing_ball1_1 -->
+          <site group="3" name="closing_ball1_1" pos="1.12757e-17 -0.033 -3.90313e-18" quat="1.0137e-18 -0.707107 -0 -0.707107" />
+        </body>
+      </body>
+      <!-- Link custom_servo_horn_2 -->
+      <body name="custom_servo_horn_2" pos="-0.00755 0.00110358 0.0645642" quat="0.473147 0.525483 -0.473147 -0.525483">
+        <!-- Joint from r_wrist_interface to custom_servo_horn_2 -->
+        <joint axis="0 0 1" name="finger2_motor1" type="hinge" range="-1.5707963267682898 1.5707963268215033" />
+        <inertial pos="-0.005 5.48009e-18 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 6.82528e-24 -1.65246e-24 1.18606e-24" />
+        <!-- Part rotule_ball_5 -->
+        <geom type="mesh" class="visual" pos="-0.005 2.77556e-17 -0.0069" quat="1 -1.68042e-16 5.55112e-17 -1.40183e-16" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_5 -->
+        <geom type="mesh" class="visual" pos="-0.005 0 -0.0114" quat="5.00266e-17 -0.707107 -0.707107 1.17765e-17" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Part custom_servo_horn_3 -->
+        <geom type="mesh" class="visual" pos="1.73472e-18 1.38778e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Link ball_link_2 -->
+        <body name="ball_link_2" pos="-0.005 0 -0.0069" quat="0.0508317 0.00114172 0.0201974 0.998502">
+          <!-- Joint from custom_servo_horn_2 to ball_link_2 -->
+          <joint axis="0 0 1" name="passive_ball4" type="ball" />
+          <inertial pos="-1.37299e-13 -0.0165 -1.37299e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66029e-19 -4.97671e-14 -6.66028e-19" />
+          <!-- Part rotule_lever_5 -->
+          <geom type="mesh" class="visual" pos="0 6.93889e-18 -4.33681e-19" quat="1 0 0 -2.42677e-16" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_6 -->
+          <geom type="mesh" class="visual" pos="0 -0.033 0" quat="9.33321e-20 -0.707107 0 -0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_3 -->
+          <geom type="mesh" class="visual" pos="0 0.00025 2.60209e-18" quat="0.707107 2.22045e-16 0.707107 5.55112e-17" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_3 -->
+          <geom type="mesh" class="visual" pos="0 4.71845e-16 1.60462e-17" quat="0.707107 -1.84584e-16 0.707107 8.33723e-16" mesh="spacer" material="spacer_material" />
+          <!-- Link rotule_ball_3 -->
+          <body name="rotule_ball_3" pos="0 -0.033 0" quat="0.707107 -4.06536e-17 -0.707107 -1.91316e-16">
+            <!-- Joint from ball_link_2 to rotule_ball_3 -->
+            <joint axis="0 0 1" name="passive_ball5" type="ball" />
+            <inertial pos="0.000207771 -0.0141744 0.00659195" mass="0.00277119" fullinertia="7.98533e-07 1.05617e-07 7.64793e-07 -9.75532e-08 -1.04582e-08 -7.02058e-08" />
+            <!-- Part rotule_ball_6 -->
+            <geom type="mesh" class="visual" pos="7.23262e-05 -0.00169684 0.0160102" quat="0.0154457 -0.251089 -0.966522 -0.0505096" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_6 -->
+            <geom type="mesh" class="visual" pos="-2.02154e-05 0.000474272 -0.00447489" quat="0.024794 -0.505888 0.860981 0.0466374" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part link_2 -->
+            <geom type="mesh" class="visual" pos="0.0114391 -0.00307086 0.00771803" quat="0.141831 0.694356 -0.213262 0.672512" mesh="link" material="link_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_7 -->
+            <geom type="mesh" class="visual" pos="9.25416e-05 -0.00217111 0.0204851" quat="0.505888 0.024794 0.0466374 -0.860981" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part rotule_ball_7 -->
+            <geom type="mesh" class="visual" pos="4.33681e-19 1.38778e-17 -6.93889e-18" quat="0.251089 0.0154457 -0.0505096 0.966522" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Frame closing_ball2_2 -->
+            <site group="3" name="closing_ball2_2" pos="7.23262e-05 -0.00169684 0.0160102" quat="0.0505096 -0.966522 0.251089 0.0154457" />
+            <!-- Link std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_2 -->
+            <body name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_2" pos="0.00620709 -0.000368272 0.00993876" quat="0.024794 -0.505888 0.860981 0.0466374">
+              <!-- Joint from rotule_ball_3 to std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_2 -->
+              <joint axis="0 0 1" name="passive2 (2)" type="hinge" />
+              <inertial pos="-0.00530874 -0.00868244 0.00225" mass="0.00201325" fullinertia="9.34482e-08 4.69015e-08 1.16807e-07 -4.54529e-08 4.13712e-22 -1.1292e-21" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_3 -->
+              <geom type="mesh" class="visual" pos="1.52656e-16 -9.71445e-17 0.00225" quat="0.872253 -3.49423e-15 -4.21885e-15 0.489055" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Part std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_2 -->
+              <geom type="mesh" class="visual" pos="-0.0113198 -0.0185136 0.00225" quat="0.616776 -0.345814 0.616776 0.345814" mesh="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" material="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_material" />
+              <!-- Part plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_2 -->
+              <geom type="mesh" class="visual" pos="-0.0103287 -0.0168926 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5" material="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_material" />
+              <!-- Part gimbal_2 -->
+              <geom type="mesh" class="visual" pos="-0.0031299 -0.00511895 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="gimbal" material="gimbal_material" />
+              <!-- Frame closing_1 (2)_1 -->
+              <site group="3" name="closing_1 (2)_1" pos="-0.00495568 -0.00810501 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_1 (2)_1_z -->
+              <site group="3" name="closing_1 (2)_1_z" pos="-0.0571208 -0.0934209 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_3 (2)_2 -->
+              <site group="3" name="closing_3 (2)_2" pos="-0.0031299 -0.00511895 -0.00275" quat="0.96259 5.51594e-16 -5.38458e-15 -0.270962" />
+              <!-- Frame closing_3 (2)_2_z -->
+              <site group="3" name="closing_3 (2)_2_z" pos="-0.0031299 -0.00511895 0.09725" quat="0.96259 5.51594e-16 -5.38458e-15 -0.270962" />
+            </body>
+            <!-- Link parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_2 -->
+            <body name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_2" pos="-0.00789165 -0.0482013 0.00111154" quat="0.505888 0.024794 0.0466374 -0.860981">
+              <!-- Joint from rotule_ball_3 to parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_2 -->
+              <joint axis="0 0 1" name="passive4 (2)" type="hinge" />
+              <inertial pos="0.014571 -0.0133924 0.00225" mass="0.00540375" fullinertia="3.60212e-07 5.51031e-07 7.69492e-07 3.36413e-07 -3.94368e-22 -1.61985e-22" />
+              <!-- Part distal_2 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal" material="distal_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_5 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 0.01185" quat="2.30282e-15 -0.870159 -0.49277 5.04081e-15" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part distal_shell_2 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" material="distal_shell_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_6 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 -0.00735" quat="0.870159 2.64119e-15 5.27356e-15 0.49277" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_4 -->
+              <geom type="mesh" class="visual" pos="2.77556e-17 1.38778e-17 0.00225" quat="2.56875e-17 0.49277 -0.870159 -3.08699e-17" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Frame tip2 -->
+              <site group="3" name="tip2" pos="0.0272563 -0.0277177 0.00225" quat="0.335723 -0.335723 0.622326 -0.622326" />
+              <!-- Link parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_2 -->
+              <body name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_2" pos="-0.000346366 -0.00598999 0.00655" quat="1.06337e-15 0.999998 0.00198164 -5.41416e-15">
+                <!-- Joint from parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_2 to parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_2 -->
+                <joint axis="0 0 1" name="passive_5 (2)" type="hinge" />
+                <inertial pos="-0.0249171 -0.00392936 0.0052354" mass="0.0101851" fullinertia="4.96149e-07 2.52849e-06 2.3577e-06 2.45138e-08 1.19032e-10 3.03943e-10" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_3 -->
+                <geom type="mesh" class="visual" pos="0 1.38778e-17 0.00515" quat="0.707107 -3.56612e-17 1.11022e-16 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_7 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 0.01685" quat="6.10867e-17 0.707107 -0.707107 -1.01873e-16" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_8 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 -0.00655" quat="0.707107 -2.46327e-16 4.44089e-16 -0.707107" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part proximal_2 -->
+                <geom type="mesh" class="visual" pos="-0.052 2.08167e-17 0.00525" quat="0.5 0.5 0.5 -0.5" mesh="proximal" material="proximal_material" />
+                <!-- Part proximal_shell_2 -->
+                <geom type="mesh" class="visual" pos="-0.052 2.77556e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" material="proximal_shell_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_4 -->
+                <geom type="mesh" class="visual" pos="-0.052 2.77556e-17 0.00515" quat="0.707107 1.76229e-16 -0 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Frame closing_3 (2)_1 -->
+                <site group="3" name="closing_3 (2)_1" pos="-0.052 2.08167e-17 -2.60209e-18" quat="1 0 4.16334e-17 2.53344e-16" />
+                <!-- Frame closing_3 (2)_1_z -->
+                <site group="3" name="closing_3 (2)_1_z" pos="-0.052 2.77556e-17 0.1" quat="1 0 4.16334e-17 2.53344e-16" />
+                <geom type="mesh" class="visual" pos="-0.052 2.77556e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+              </body>
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link rotule_ball_4 -->
+      <body name="rotule_ball_4" pos="-0.00755 -0.0109301 0.0632994" quat="0.525483 -0.473147 -0.525483 0.473147">
+        <!-- Joint from r_wrist_interface to rotule_ball_4 -->
+        <joint axis="0 0 1" name="finger2_motor2" type="hinge" range="-1.5707963267948954 1.5707963267948977" />
+        <inertial pos="-0.005 -1.91124e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -1.64426e-23 6.21326e-24 6.1495e-24" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_8 -->
+        <geom type="mesh" class="visual" pos="-0.005 -1.38778e-17 -0.0114" quat="3.55562e-17 0.707107 0.707107 1.08081e-15" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Part rotule_ball_8 -->
+        <geom type="mesh" class="visual" pos="-0.005 -1.38778e-17 -0.0069" quat="1 9.79908e-17 -4.02456e-16 1.11485e-15" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part custom_servo_horn_4 -->
+        <geom type="mesh" class="visual" pos="0 0 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Link ball_link_3 -->
+        <body name="ball_link_3" pos="-0.005 0 -0.0069" quat="0.998986 0.0202294 0.000405327 0.0402274">
+          <!-- Joint from rotule_ball_4 to ball_link_3 -->
+          <joint axis="0 0 1" name="passive_ball6" type="ball" />
+          <inertial pos="-1.37298e-13 -0.0165 -1.373e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66118e-19 -4.97671e-14 -6.66e-19" />
+          <!-- Part rotule_lever_7 -->
+          <geom type="mesh" class="visual" pos="0 -0.033 -4.33681e-19" quat="1.77892e-15 -0.707107 -3.33067e-15 -0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_8 -->
+          <geom type="mesh" class="visual" pos="1.73472e-18 0 -8.67362e-19" quat="1 0 2.22045e-16 -3.83505e-17" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_4 -->
+          <geom type="mesh" class="visual" pos="1.73472e-18 -0.03325 -1.73472e-18" quat="5.31222e-17 -1.5173e-16 2.22045e-16 1" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_4 -->
+          <geom type="mesh" class="visual" pos="-1.73472e-18 -0.033 -1.30104e-18" quat="4.24918e-15 4.205e-15 -3.55271e-15 -1" mesh="spacer" material="spacer_material" />
+          <!-- Frame closing_ball2_1 -->
+          <site group="3" name="closing_ball2_1" pos="0 -0.033 -4.33681e-19" quat="1.77892e-15 -0.707107 -3.33067e-15 -0.707107" />
+        </body>
+      </body>
+      <!-- Link custom_servo_horn_3 -->
+      <body name="custom_servo_horn_3" pos="-0.00755 -0.0270535 0.0550493" quat="0.437766 0.555303 -0.437766 -0.555303">
+        <!-- Joint from r_wrist_interface to custom_servo_horn_3 -->
+        <joint axis="0 0 1" name="finger3_motor1" type="hinge" range="-1.5707963267948988 1.5707963267948943" />
+        <inertial pos="-0.005 -2.58963e-18 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 4.09994e-25 -7.83529e-24 7.96981e-24" />
+        <!-- Part rotule_ball_9 -->
+        <geom type="mesh" class="visual" pos="-0.005 -6.93889e-18 -0.0069" quat="1 -1.31537e-16 -3.747e-16 -6.03194e-16" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part custom_servo_horn_5 -->
+        <geom type="mesh" class="visual" pos="-1.73472e-18 2.08167e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_9 -->
+        <geom type="mesh" class="visual" pos="-0.005 0 -0.0114" quat="1.19633e-15 -0.707107 -0.707107 3.28095e-16" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Link ball_link_4 -->
+        <body name="ball_link_4" pos="-0.005 5.06539e-16 -0.0069" quat="0.00409098 0.952572 -0.0545442 -0.299358">
+          <!-- Joint from custom_servo_horn_3 to ball_link_4 -->
+          <joint axis="0 0 1" name="passive_ball7" type="ball" />
+          <inertial pos="-1.37304e-13 -0.0165 -1.37285e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.65963e-19 -4.97671e-14 -6.65957e-19" />
+          <!-- Part rotule_lever_9 -->
+          <geom type="mesh" class="visual" pos="-7.02021e-18 -1.38778e-17 -8.67362e-19" quat="1 0 2.77556e-16 4.85527e-16" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_10 -->
+          <geom type="mesh" class="visual" pos="-2.84603e-18 -0.033 4.98733e-17" quat="2.3096e-15 0.707107 -1.22125e-15 0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_5 -->
+          <geom type="mesh" class="visual" pos="-7.31836e-18 0.00025 -4.33681e-19" quat="0.707107 1.5725e-15 0.707107 5.82777e-16" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_5 -->
+          <geom type="mesh" class="visual" pos="-9.21572e-18 -1.11022e-16 -4.33681e-19" quat="0.707107 2.19007e-15 0.707107 -3.17019e-16" mesh="spacer" material="spacer_material" />
+          <!-- Link rotule_ball_5 -->
+          <body name="rotule_ball_5" pos="-2.84603e-18 -0.033 4.98733e-17" quat="0.707107 -2.43777e-15 -0.707107 -1.30283e-15">
+            <!-- Joint from ball_link_4 to rotule_ball_5 -->
+            <joint axis="0 0 1" name="passive_ball8" type="ball" />
+            <inertial pos="-0.00392912 -0.0141744 -0.00529707" mass="0.00277119" fullinertia="7.77768e-07 1.05617e-07 7.85559e-07 1.20172e-07 -1.94628e-08 2.05636e-09" />
+            <!-- Part rotule_ball_10 -->
+            <geom type="mesh" class="visual" pos="-0.00918769 -0.00169684 -0.0131117" quat="0.917779 0.0268008 0.303456 0.254713" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Part rotule_ball_11 -->
+            <geom type="mesh" class="visual" pos="-2.60209e-18 0 -8.40257e-19" quat="0.0268008 -0.917779 -0.254713 0.303456" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_10 -->
+            <geom type="mesh" class="visual" pos="-0.0117557 -0.00217111 -0.0167765" quat="0.195625 0.829077 -0.468858 -0.233527" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part link_3 -->
+            <geom type="mesh" class="visual" pos="-0.0137982 -0.00307086 0.000181431" quat="0.161158 0.434392 0.19906 -0.863543" mesh="link" material="link_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_11 -->
+            <geom type="mesh" class="visual" pos="0.00256799 0.000474272 0.00366477" quat="0.829077 -0.195625 0.233527 -0.468858" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Frame closing_ball3_2 -->
+            <site group="3" name="closing_ball3_2" pos="-0.00918769 -0.00169684 -0.0131117" quat="0.303456 0.254713 -0.917779 -0.0268008" />
+            <!-- Link std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_3 -->
+            <body name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_3" pos="-0.010766 -0.000368272 -0.00462606" quat="0.829077 -0.195625 0.233527 -0.468858">
+              <!-- Joint from rotule_ball_5 to std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_3 -->
+              <joint axis="0 0 1" name="passive2 (3)" type="hinge" />
+              <inertial pos="-0.00530874 -0.00868244 0.00225" mass="0.00201325" fullinertia="9.34482e-08 4.69015e-08 1.16807e-07 -4.54529e-08 -9.47916e-23 -9.91331e-23" />
+              <!-- Part gimbal_3 -->
+              <geom type="mesh" class="visual" pos="-0.0031299 -0.00511895 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="gimbal" material="gimbal_material" />
+              <!-- Part std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_3 -->
+              <geom type="mesh" class="visual" pos="-0.0113198 -0.0185136 0.00225" quat="0.616776 -0.345814 0.616776 0.345814" mesh="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" material="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_material" />
+              <!-- Part plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_3 -->
+              <geom type="mesh" class="visual" pos="-0.0103287 -0.0168926 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" mesh="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5" material="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_5 -->
+              <geom type="mesh" class="visual" pos="-4.02456e-16 2.98372e-16 0.00225" quat="0.872253 1.28716e-15 1.77636e-15 0.489055" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Frame closing_1 (3)_1 -->
+              <site group="3" name="closing_1 (3)_1" pos="-0.00495568 -0.00810501 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_1 (3)_1_z -->
+              <site group="3" name="closing_1 (3)_1_z" pos="-0.0571208 -0.0934209 0.00225" quat="0.345814 0.616776 0.345814 -0.616776" />
+              <!-- Frame closing_3 (3)_2 -->
+              <site group="3" name="closing_3 (3)_2" pos="-0.0031299 -0.00511895 -0.00275" quat="0.96259 8.6245e-17 3.10862e-15 -0.270962" />
+              <!-- Frame closing_3 (3)_2_z -->
+              <site group="3" name="closing_3 (3)_2_z" pos="-0.0031299 -0.00511895 0.09725" quat="0.96259 8.6245e-17 3.10862e-15 -0.270962" />
+            </body>
+            <!-- Link parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_3 -->
+            <body name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_3" pos="0.00584954 -0.0482013 -0.00541263" quat="0.195625 0.829077 -0.468858 -0.233527">
+              <!-- Joint from rotule_ball_5 to parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_3 -->
+              <joint axis="0 0 1" name="passive4 (3)" type="hinge" />
+              <inertial pos="0.014571 -0.0133924 0.00225" mass="0.00540375" fullinertia="3.60212e-07 5.51031e-07 7.69492e-07 3.36413e-07 5.01568e-22 3.08634e-22" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_9 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 -0.00735" quat="0.870159 -7.41727e-16 -1.27676e-15 0.49277" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_10 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165558 0.01185" quat="2.50462e-16 -0.870159 -0.49277 -1.265e-16" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_6 -->
+              <geom type="mesh" class="visual" pos="2.77556e-17 1.38778e-17 0.00225" quat="1.21675e-16 -0.49277 0.870159 2.46257e-16" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Part distal_3 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal" material="distal_material" />
+              <!-- Part distal_shell_3 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" material="distal_shell_material" />
+              <!-- Frame tip3 -->
+              <site group="3" name="tip3" pos="0.0272563 -0.0277177 0.00225" quat="0.335723 -0.335723 0.622326 -0.622326" />
+              <!-- Link parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_3 -->
+              <body name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_3" pos="-0.000346366 -0.00598999 0.00655" quat="3.81429e-17 0.999998 0.00198164 -1.2839e-17">
+                <!-- Joint from parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_3 to parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_3 -->
+                <joint axis="0 0 1" name="passive_5 (3)" type="hinge" />
+                <inertial pos="-0.0249171 -0.00392936 0.0052354" mass="0.0101851" fullinertia="4.96149e-07 2.52849e-06 2.3577e-06 2.45138e-08 1.19032e-10 3.03943e-10" />
+                <!-- Part proximal_shell_3 -->
+                <geom type="mesh" class="visual" pos="-0.052 1.38778e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" material="proximal_shell_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_11 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 -0.00655" quat="0.707107 1.743e-16 1.09635e-15 -0.707107" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part proximal_3 -->
+                <geom type="mesh" class="visual" pos="-0.052 1.38778e-17 0.00525" quat="0.5 0.5 0.5 -0.5" mesh="proximal" material="proximal_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_5 -->
+                <geom type="mesh" class="visual" pos="-0.052 6.93889e-18 0.00515" quat="0.707107 1.94591e-16 9.99201e-16 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_12 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 0.01685" quat="6.5388e-16 -0.707107 0.707107 -5.09493e-16" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_6 -->
+                <geom type="mesh" class="visual" pos="0 -6.93889e-18 0.00515" quat="0.707107 -1.10646e-15 3.44169e-15 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Frame closing_3 (3)_1 -->
+                <site group="3" name="closing_3 (3)_1" pos="-0.052 6.93889e-18 -1.73472e-17" quat="1 -0 -0 2.99707e-19" />
+                <!-- Frame closing_3 (3)_1_z -->
+                <site group="3" name="closing_3 (3)_1_z" pos="-0.052 6.93889e-18 0.1" quat="1 -0 -0 2.99707e-19" />
+                <geom type="mesh" class="visual" pos="-0.052 1.38778e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+              </body>
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207565 0.00225" quat="0.348441 -0.615296 -0.348441 -0.615296" mesh="distal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link rotule_ball_6 -->
+      <body name="rotule_ball_6" pos="-0.00755 -0.0388192 0.0522246" quat="0.555303 -0.437766 -0.555303 0.437766">
+        <!-- Joint from r_wrist_interface to rotule_ball_6 -->
+        <joint axis="0 0 1" name="finger3_motor2" type="hinge" range="-1.570796326794957 1.5707963267948362" />
+        <inertial pos="-0.005 2.08033e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -6.35081e-25 7.08918e-25 2.67184e-25" />
+        <!-- Part rotule_ball_12 -->
+        <geom type="mesh" class="visual" pos="-0.005 1.38778e-17 -0.0069" quat="1 -2.43774e-17 -8.32667e-17 5.7167e-17" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part custom_servo_horn_6 -->
+        <geom type="mesh" class="visual" pos="0 2.08167e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_12 -->
+        <geom type="mesh" class="visual" pos="-0.005 2.08167e-17 -0.0114" quat="3.54332e-18 -0.707107 -0.707107 3.48686e-18" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Link ball_link_5 -->
+        <body name="ball_link_5" pos="-0.005 -6.03684e-16 -0.0069" quat="0.916843 0.00260985 0.3967 0.0449518">
+          <!-- Joint from rotule_ball_6 to ball_link_5 -->
+          <joint axis="0 0 1" name="passive_ball9" type="ball" />
+          <inertial pos="-1.37303e-13 -0.0165 -1.37299e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66105e-19 -4.97671e-14 -6.66013e-19" />
+          <!-- Part rotule_lever_11 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 0 0" quat="1 6.62587e-18 -1.11022e-16 -2.23774e-16" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_12 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 -0.033 0" quat="1.52887e-15 -0.707107 -2.44249e-15 -0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_6 -->
+          <geom type="mesh" class="visual" pos="0 0.00025 -5.20417e-17" quat="0.707107 -2.14256e-15 0.707107 1.07093e-15" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_6 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 6.93889e-18 -4.85723e-17" quat="0.707107 -2.18487e-15 0.707107 1.10919e-15" mesh="spacer" material="spacer_material" />
+          <!-- Frame closing_ball3_1 -->
+          <site group="3" name="closing_ball3_1" pos="-3.46945e-18 -0.033 0" quat="1.52887e-15 -0.707107 -2.44249e-15 -0.707107" />
+        </body>
+      </body>
+      <!-- Link custom_servo_horn_4 -->
+      <body name="custom_servo_horn_4" pos="-0.000298971 0.00773341 0.03365" quat="1.09642e-15 0.573573 0.819154 2.26766e-16">
+        <!-- Joint from r_wrist_interface to custom_servo_horn_4 -->
+        <joint axis="0 0 1" name="finger4_motor1" type="hinge" range="-1.5707889966987234 1.5708036568910697" />
+        <inertial pos="-0.005 1.34196e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -8.22944e-25 -2.0357e-26 -1.90632e-25" />
+        <!-- Part rotule_ball_13 -->
+        <geom type="mesh" class="visual" pos="-0.005 1.25767e-17 -0.0069" quat="1 -0 -3.46945e-17 1.10259e-15" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part custom_servo_horn_7 -->
+        <geom type="mesh" class="visual" pos="0 2.08167e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_13 -->
+        <geom type="mesh" class="visual" pos="-0.005 1.25767e-17 -0.0114" quat="1.27845e-17 0.707107 0.707107 -1.62942e-17" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Link ball_link_6 -->
+        <body name="ball_link_6" pos="-0.005 2.72785e-16 -0.0069" quat="0.0229055 0.997115 -0.0496666 0.0526352">
+          <!-- Joint from custom_servo_horn_4 to ball_link_6 -->
+          <joint axis="0 0 1" name="passive_ball10" type="ball" />
+          <inertial pos="-1.37301e-13 -0.0165 -1.37289e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66024e-19 -4.97671e-14 -6.6601e-19" />
+          <!-- Part rotule_lever_13 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 -0.033 1.38778e-17" quat="3.22735e-17 0.707107 1.11022e-16 0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_14 -->
+          <geom type="mesh" class="visual" pos="-4.33681e-19 0 6.93889e-18" quat="1 0 0 5.71493e-17" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_7 -->
+          <geom type="mesh" class="visual" pos="-7.37257e-18 -0.03325 1.38778e-17" quat="7.06177e-17 3.50959e-17 -2.22045e-16 1" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_7 -->
+          <geom type="mesh" class="visual" pos="-3.03577e-18 -0.033 1.38778e-17" quat="1.37708e-17 0 2.22045e-16 -1" mesh="spacer" material="spacer_material" />
+          <!-- Link rotule_ball_7 -->
+          <body name="rotule_ball_7" pos="-3.46945e-18 -0.033 1.38778e-17" quat="0.707107 -3.92857e-17 -0.707107 1.93508e-16">
+            <!-- Joint from ball_link_6 to rotule_ball_7 -->
+            <joint axis="0 0 1" name="passive_ball11" type="ball" />
+            <inertial pos="0.000502397 -0.0141744 -0.00657609" mass="0.00277119" fullinertia="8.0038e-07 1.05616e-07 7.62947e-07 8.94343e-08 -6.60789e-09 8.02893e-08" />
+            <!-- Part rotule_ball_14 -->
+            <geom type="mesh" class="visual" pos="6.93889e-18 6.93889e-18 3.03577e-18" quat="0.0639578 0.965951 0.248003 0.03663" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Part link_4 -->
+            <geom type="mesh" class="visual" pos="-0.0105427 -0.00307081 -0.00890361" quat="0.220589 0.708932 0.13014 -0.657129" mesh="link" material="link_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_14 -->
+            <geom type="mesh" class="visual" pos="0.00211128 -0.00217107 -0.0203762" quat="0.0193237 0.858395 -0.507666 0.0711263" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_15 -->
+            <geom type="mesh" class="visual" pos="-0.000461201 0.000474262 0.00445111" quat="0.858395 -0.0193237 -0.0711263 -0.507666" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+            <!-- Part rotule_ball_15 -->
+            <geom type="mesh" class="visual" pos="0.00165007 -0.0016968 -0.0159251" quat="0.965951 -0.0639578 -0.03663 0.248003" mesh="rotule_ball" material="rotule_ball_material" />
+            <!-- Frame closing_ball4_2 -->
+            <site group="3" name="closing_ball4_2" pos="0.00165007 -0.0016968 -0.0159251" quat="0.0193237 0.858395 -0.507666 0.0711263" />
+            <!-- Link std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_4 -->
+            <body name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_4" pos="-0.00510212 -0.000368231 -0.0105487" quat="0.858395 -0.0193237 -0.0711263 -0.507666">
+              <!-- Joint from rotule_ball_7 to std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_4 -->
+              <joint axis="0 0 1" name="passive2 (4)" type="hinge" />
+              <inertial pos="-0.00530871 -0.00868246 0.00225" mass="0.00201325" fullinertia="9.34485e-08 4.69012e-08 1.16807e-07 -4.54527e-08 2.07493e-23 -3.80521e-22" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_7 -->
+              <geom type="mesh" class="visual" pos="-6.93889e-18 5.20417e-18 0.00225" quat="0.872252 -2.35114e-14 -1.31006e-14 0.489056" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Part plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_4 -->
+              <geom type="mesh" class="visual" pos="-0.0103286 -0.0168926 0.00225" quat="0.345815 0.616776 0.345815 -0.616776" mesh="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5" material="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_material" />
+              <!-- Part gimbal_4 -->
+              <geom type="mesh" class="visual" pos="-0.00312989 -0.00511896 0.00225" quat="0.345815 0.616776 0.345815 -0.616776" mesh="gimbal" material="gimbal_material" />
+              <!-- Part std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_4 -->
+              <geom type="mesh" class="visual" pos="-0.0113198 -0.0185136 0.00225" quat="0.616776 -0.345815 0.616776 0.345815" mesh="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" material="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_material" />
+              <!-- Frame closing_1 (4)_1 -->
+              <site group="3" name="closing_1 (4)_1" pos="-0.00495566 -0.00810503 0.00225" quat="0.345815 0.616776 0.345815 -0.616776" />
+              <!-- Frame closing_1 (4)_1_z -->
+              <site group="3" name="closing_1 (4)_1_z" pos="-0.0571205 -0.0934211 0.00225" quat="0.345815 0.616776 0.345815 -0.616776" />
+              <!-- Frame closing_3 (4)_2 -->
+              <site group="3" name="closing_3 (4)_2" pos="-0.00312989 -0.00511896 -0.00275" quat="0.96259 -7.35707e-15 -2.60902e-14 -0.270961" />
+              <!-- Frame closing_3 (4)_2_z -->
+              <site group="3" name="closing_3 (4)_2_z" pos="-0.00312989 -0.00511896 0.09725" quat="0.96259 -7.35707e-15 -2.60902e-14 -0.270961" />
+            </body>
+            <!-- Link parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_4 -->
+            <body name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_4" pos="0.00796529 -0.0482013 -0.000256421" quat="0.0193237 0.858395 -0.507666 0.0711263">
+              <!-- Joint from rotule_ball_7 to parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_4 -->
+              <joint axis="0 0 1" name="passive4 (4)" type="hinge" />
+              <inertial pos="0.0145711 -0.0133923 0.00225" mass="0.00540375" fullinertia="3.6021e-07 5.51033e-07 7.69492e-07 3.36412e-07 9.8633e-21 -8.79128e-21" />
+              <!-- Part distal_shell_4 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207563 0.00225" quat="0.348442 -0.615295 -0.348442 -0.615295" mesh="distal_shell" material="distal_shell_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_13 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165557 0.01185" quat="1.02396e-15 0.870159 0.492771 -2.69161e-14" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Part parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_8 -->
+              <geom type="mesh" class="visual" pos="9.71445e-17 6.28837e-17 0.00225" quat="2.69867e-14 0.492771 -0.870159 9.54903e-16" mesh="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" material="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" />
+              <!-- Part distal_4 -->
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207563 0.00225" quat="0.348442 -0.615295 -0.348442 -0.615295" mesh="distal" material="distal_material" />
+              <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_14 -->
+              <geom type="mesh" class="visual" pos="0.0194851 -0.0165557 -0.00735" quat="0.870159 -8.44457e-16 2.55351e-14 0.492771" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+              <!-- Frame tip4 -->
+              <site group="3" name="tip4" pos="0.0272563 -0.0277177 0.00225" quat="0.622326 0.622326 0.335724 0.335724" />
+              <!-- Link parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_4 -->
+              <body name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_4" pos="-0.00034635 -0.00599 0.00655" quat="1.30622e-14 0.999998 0.00198154 -2.18286e-14">
+                <!-- Joint from parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_4 to parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_4 -->
+                <joint axis="0 0 1" name="passive_5 (4)" type="hinge" />
+                <inertial pos="-0.0249171 -0.00392936 0.0052354" mass="0.0101851" fullinertia="4.96149e-07 2.52849e-06 2.3577e-06 2.45138e-08 1.19032e-10 3.03943e-10" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_15 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 0.01685" quat="4.73912e-15 0.707107 -0.707107 -4.64756e-16" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_7 -->
+                <geom type="mesh" class="visual" pos="-0.052 4.33681e-18 0.00515" quat="0.707107 -1.03781e-17 -2.77556e-17 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_8 -->
+                <geom type="mesh" class="visual" pos="0 -2.68882e-17 0.00515" quat="0.707107 1.23046e-15 -7.77156e-16 -0.707107" mesh="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" material="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" />
+                <!-- Part proximal_shell_4 -->
+                <geom type="mesh" class="visual" pos="-0.052 3.1225e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" material="proximal_shell_material" />
+                <!-- Part proximal_4 -->
+                <geom type="mesh" class="visual" pos="-0.052 8.67362e-18 0.00525" quat="0.5 0.5 0.5 -0.5" mesh="proximal" material="proximal_material" />
+                <!-- Part std00447_thermoplastique_m2_5x6__configuration_default_16 -->
+                <geom type="mesh" class="visual" pos="-0.022 -0.004 -0.00655" quat="0.707107 -3.79993e-15 5.55112e-16 -0.707107" mesh="std00447_thermoplastique_m2_5x6__configuration_default" material="std00447_thermoplastique_m2_5x6__configuration_default_material" />
+                <!-- Frame closing_3 (4)_1 -->
+                <site group="3" name="closing_3 (4)_1" pos="-0.052 6.93889e-18 0" quat="1 -0 -6.93889e-17 -1.53157e-18" />
+                <!-- Frame closing_3 (4)_1_z -->
+                <site group="3" name="closing_3 (4)_1_z" pos="-0.052 7.80626e-18 0.1" quat="1 -0 -6.93889e-17 -1.53157e-18" />
+                <geom type="mesh" class="visual" pos="-0.052 3.1225e-17 0.00515" quat="0.5 0.5 0.5 -0.5" mesh="proximal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+              </body>
+              <geom type="mesh" class="visual" pos="-0.0449404 0.0207563 0.00225" quat="0.348442 -0.615295 -0.348442 -0.615295" mesh="distal_shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+            </body>
+          </body>
+        </body>
+      </body>
+      <!-- Link rotule_ball_8 -->
+      <body name="rotule_ball_8" pos="-0.00443741 0.0191037 0.03365" quat="1.42065e-15 -0.819152 0.573576 6.98838e-17">
+        <!-- Joint from r_wrist_interface to rotule_ball_8 -->
+        <joint axis="0 0 1" name="finger4_motor2" type="hinge" range="-1.5707963267948957 1.5707963267948974" />
+        <inertial pos="-0.005 1.88698e-17 -0.00655938" mass="0.000410988" fullinertia="4.63584e-09 4.63584e-09 1e-09 -4.00135e-25 1.5509e-24 -3.69519e-24" />
+        <!-- Part ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_16 -->
+        <geom type="mesh" class="visual" pos="-0.005 1.51788e-17 -0.0114" quat="3.76147e-16 0.707107 0.707107 -1.51782e-16" mesh="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" material="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" />
+        <!-- Part rotule_ball_16 -->
+        <geom type="mesh" class="visual" pos="-0.005 1.47451e-17 -0.0069" quat="1 -2.30869e-16 -1.66533e-16 6.18996e-16" mesh="rotule_ball" material="rotule_ball_material" />
+        <!-- Part custom_servo_horn_8 -->
+        <geom type="mesh" class="visual" pos="0 2.1684e-17 -0.0025" quat="0 1 0 0" mesh="custom_servo_horn" material="custom_servo_horn_material" />
+        <!-- Link ball_link_7 -->
+        <body name="ball_link_7" pos="-0.005 1.56125e-17 -0.0069" quat="0.000140654 -0.0402164 0.998986 0.0202514">
+          <!-- Joint from rotule_ball_8 to ball_link_7 -->
+          <joint axis="0 0 1" name="passive_ball12" type="ball" />
+          <inertial pos="-1.37306e-13 -0.0165 -1.37298e-13" mass="0.000463323" fullinertia="6.40121e-08 1.59688e-09 6.40121e-08 6.66017e-19 -4.97671e-14 -6.66019e-19" />
+          <!-- Part rotule_lever_15 -->
+          <geom type="mesh" class="visual" pos="-1.04083e-17 -0.033 0" quat="3.75562e-17 0.707107 0 0.707107" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part rotule_lever_16 -->
+          <geom type="mesh" class="visual" pos="-3.46945e-18 8.67362e-19 0" quat="1 -0 -0 1.17319e-16" mesh="rotule_lever" material="rotule_lever_material" />
+          <!-- Part m2_rod_l18_8 -->
+          <geom type="mesh" class="visual" pos="-1.73472e-17 -0.03325 0" quat="1.34656e-17 0 8.32667e-17 -1" mesh="m2_rod_l18" material="m2_rod_l18_material" />
+          <!-- Part spacer_8 -->
+          <geom type="mesh" class="visual" pos="-1.04083e-17 -0.033 0" quat="1.92196e-17 3.65548e-18 1.38778e-16 1" mesh="spacer" material="spacer_material" />
+          <!-- Frame closing_ball4_1 -->
+          <site group="3" name="closing_ball4_1" pos="-1.04083e-17 -0.033 0" quat="3.75562e-17 0.707107 0 0.707107" />
+        </body>
+      </body>
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="Palm_Shell" material="cover" />
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="Top_Shell" material="cover" />
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="Palm_Shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+      <geom type="mesh" class="visual" pos="-0.0115 0.0245 0.1022" quat="0.5 0.5 -0.5 -0.5" mesh="Top_Shell" contype="2" conaffinity="1" group="3" rgba="0.4 0.5 0.6 0" />
+    </body>
+  </worldbody>
+  <asset>
+    <mesh file="Proximal_Shell.stl" name="proximal_shell" scale="0.001 0.001 0.001" />
+    <mesh file="Link.stl" name="link" scale="0.001 0.001 0.001" />
+    <mesh file="spacer.stl" name="spacer" />
+    <mesh file="parallel_pin_2x16.stl" name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b" />
+    <mesh file="bushing_0608_04.stl" name="bushing_0608_04" />
+    <mesh file="Finger_Frame-2.stl" name="finger_frame_2" scale="0.001 0.001 0.001" />
+    <mesh file="pan_head_screw_m2x0_4x10.stl" name="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed" />
+    <mesh file="parallel_pin_2x10.stl" name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999" />
+    <mesh file="Distal.stl" name="distal" scale="0.001 0.001 0.001" />
+    <mesh file="Finger_Frame-1.stl" name="finger_frame_1" scale="0.001 0.001 0.001" />
+    <mesh file="std00447_screw_m2_5x6.stl" name="std00447_thermoplastique_m2_5x6__configuration_default" />
+    <mesh file="custom_servo_horn.stl" name="custom_servo_horn" />
+    <mesh file="scs0009.stl" name="scs0009" />
+    <mesh file="m2_rod_l18.stl" name="m2_rod_l18" />
+    <mesh file="Proximal.stl" name="proximal" scale="0.001 0.001 0.001" />
+    <mesh file="rotule_lever.stl" name="rotule_lever" />
+    <mesh file="large_plain_washer_m2_5.stl" name="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5" />
+    <mesh file="rotule_ball.stl" name="rotule_ball" />
+    <mesh file="R-Hand_Plate.stl" name="r_hand_plate" scale="0.001 0.001 0.001" />
+    <mesh file="std00333_torx_2_5x8.stl" name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default" />
+    <mesh file="Gimbal.stl" name="gimbal" scale="0.001 0.001 0.001" />
+    <mesh file="Distal_Shell.stl" name="distal_shell" scale="0.001 0.001 0.001" />
+    <mesh file="R-Wrist_Interface.stl" name="r_wrist_interface" scale="0.001 0.001 0.001" />
+    <material name="scs0009_material" rgba="0.262745 0.282353 0.301961 1" />
+    <material name="finger_frame_1_material" rgba="0.8 0.8 0.8 1" />
+    <material name="r_hand_plate_material" rgba="0.301961 0.301961 0.301961 1" />
+    <material name="finger_frame_2_material" rgba="0.8 0.8 0.8 1" />
+    <material name="bushing_0608_04_material" rgba="0.301961 0.301961 0.301961 1" />
+    <material name="r_wrist_interface_material" rgba="0.301961 0.301961 0.301961 1" />
+    <material name="rotule_ball_material" rgba="0.960784 0.835294 0.470588 1" />
+    <material name="ph_pan_head_screw_m2x0_40_x_10__2803432263e518bbd16bccbbef8784ed_material" rgba="0.603922 0.647059 0.686275 1" />
+    <material name="custom_servo_horn_material" rgba="1 1 1 1" />
+    <material name="rotule_lever_material" rgba="0.196078 0.196078 0.196078 1" />
+    <material name="m2_rod_l18_material" rgba="0.811765 0.858824 0.898039 1" />
+    <material name="spacer_material" rgba="0.501961 0.501961 0.501961 1" />
+    <material name="link_material" rgba="0.8 0.8 0.8 1" />
+    <material name="std00333_plast_tcb_torx_2_5x8__configuration_copy_of_default_material" rgba="0.901961 0.901961 0.901961 1" />
+    <material name="gimbal_material" rgba="0.8 0.8 0.8 1" />
+    <material name="plain_washer_large_grade_a_m2_5__9a369f0dc77bf9c598cdf3fb468977e5_material" rgba="0.603922 0.647059 0.686275 1" />
+    <material name="parallel_pin_2_x_10__fee063fca0c8b40e46bbc4ffff61d999_material" rgba="0.603922 0.647059 0.686275 1" />
+    <material name="std00447_thermoplastique_m2_5x6__configuration_default_material" rgba="0.901961 0.901961 0.901961 1" />
+    <material name="distal_material" rgba="0.8 0.8 0.8 1" />
+    <material name="distal_shell_material" rgba="1 1 1 1" />
+    <material name="parallel_pin_2_x_16__da4b7ddbe9d803fe3fbc70f2e822b99b_material" rgba="0.603922 0.647059 0.686275 1" />
+    <material name="proximal_shell_material" rgba="1 1 1 1" />
+    <material name="proximal_material" rgba="0.8 0.8 0.8 1" />
+    <material name="cover" rgba="0.88 0.89 0.91 1" />
+    <mesh name="Palm_Shell" file="R-Palm_Shell.stl" scale="0.001 0.001 0.001" />
+    <mesh name="Top_Shell" file="R-Top_Shell.stl" scale="0.001 0.001 0.001" />
+  </asset>
+  <actuator>
+    <position class="mjcf" name="finger1_motor1" joint="finger1_motor1" inheritrange="1" />
+    <position class="mjcf" name="finger1_motor2" joint="finger1_motor2" inheritrange="1" />
+    <position class="mjcf" name="finger2_motor1" joint="finger2_motor1" inheritrange="1" />
+    <position class="mjcf" name="finger2_motor2" joint="finger2_motor2" inheritrange="1" />
+    <position class="mjcf" name="finger3_motor1" joint="finger3_motor1" inheritrange="1" />
+    <position class="mjcf" name="finger3_motor2" joint="finger3_motor2" inheritrange="1" />
+    <position class="mjcf" name="finger4_motor1" joint="finger4_motor1" inheritrange="1" />
+    <position class="mjcf" name="finger4_motor2" joint="finger4_motor2" inheritrange="1" />
+  </actuator>
+  <equality>
+    <connect site1="closing_1 (1)_1" site2="closing_1 (1)_2" name="closing_1_1_1" />
+    <connect site1="closing_1 (1)_1_z" site2="closing_1 (1)_2_z" name="closing_1_1_1_z" />
+    <connect site1="closing_3 (1)_1" site2="closing_3 (1)_2" name="closing_3_1_1" />
+    <connect site1="closing_3 (1)_1_z" site2="closing_3 (1)_2_z" name="closing_3_1_1_z" />
+    <connect site1="closing_1 (2)_1" site2="closing_1 (2)_2" name="closing_1_2_1" />
+    <connect site1="closing_1 (2)_1_z" site2="closing_1 (2)_2_z" name="closing_1_2_1_z" />
+    <connect site1="closing_3 (2)_1" site2="closing_3 (2)_2" name="closing_3_2_1" />
+    <connect site1="closing_3 (2)_1_z" site2="closing_3 (2)_2_z" name="closing_3_2_1_z" />
+    <connect site1="closing_1 (3)_1" site2="closing_1 (3)_2" name="closing_1_3_1" />
+    <connect site1="closing_1 (3)_1_z" site2="closing_1 (3)_2_z" name="closing_1_3_1_z" />
+    <connect site1="closing_3 (3)_1" site2="closing_3 (3)_2" name="closing_3_3_1" />
+    <connect site1="closing_3 (3)_1_z" site2="closing_3 (3)_2_z" name="closing_3_3_1_z" />
+    <connect site1="closing_1 (4)_1" site2="closing_1 (4)_2" name="closing_1_4_1" />
+    <connect site1="closing_1 (4)_1_z" site2="closing_1 (4)_2_z" name="closing_1_4_1_z" />
+    <connect site1="closing_3 (4)_1" site2="closing_3 (4)_2" name="closing_3_4_1" />
+    <connect site1="closing_3 (4)_1_z" site2="closing_3 (4)_2_z" name="closing_3_4_1_z" />
+    <connect site1="closing_ball1_1" site2="closing_ball1_2" name="closing_ball1_1" />
+    <connect site1="closing_ball2_1" site2="closing_ball2_2" name="closing_ball2_1" />
+    <connect site1="closing_ball3_1" site2="closing_ball3_2" name="closing_ball3_1" />
+    <connect site1="closing_ball4_1" site2="closing_ball4_2" name="closing_ball4_1" />
+  </equality>
+</mujoco>
