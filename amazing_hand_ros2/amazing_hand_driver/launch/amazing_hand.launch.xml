@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="use_sim" default="false" description="Run the hand in Gazebo Harmonic"/>
+  <arg name="gui" default="true" description="Show the Gazebo window"/>
+  <arg name="rqt" default="false" description="Show the trajectory sliders"/>
+  <arg name="use_rviz" default="false" description="Show the measured hand pose in RViz"/>
+  <arg name="namespace" default="amazing_hand"/>
+  <arg name="side" default="1" description="1 for right, 2 for left"/>
+  <arg name="middle_pos" default="[]" description="Required on hardware: eight calibration angles in ascending servo ID order"/>
+  <arg name="servo_ids" default=""/>
+  <arg name="port" default="/dev/ttyACM0"/>
+  <arg name="baudrate" default="1000000"/>
+  <arg name="serial_timeout" default="0.05"/>
+  <arg name="control_rate" default="50" description="Hardware control loop frequency in Hz; Gazebo uses config/controllers.yaml"/>
+  <arg name="goal_speed" default="3.0"/>
+  <arg name="motor_min_deg" default="-90"/>
+  <arg name="motor_max_deg" default="90"/>
+  <arg name="disable_torque_on_shutdown" default="true"/>
+
+  <let name="generate" value="$(exec-in-pkg hand_description amazing_hand_driver)"/>
+  <let name="description" value="$(command '$(var generate) &quot;$(var side)&quot; &quot;$(var servo_ids)&quot; &quot;$(var middle_pos)&quot; $(var control_rate) &quot;$(var namespace)&quot; $(var use_sim) &quot;$(var port)&quot; $(var baudrate) $(var serial_timeout) $(var goal_speed) $(var motor_min_deg) $(var motor_max_deg) $(var disable_torque_on_shutdown)')"/>
+  <group>
+    <push_ros_namespace namespace="$(var namespace)"/>
+    <node pkg="robot_state_publisher" exec="robot_state_publisher">
+      <param name="robot_description" value="$(var description)" type="str"/>
+      <param name="frame_prefix" value="$(eval &quot;'$(var namespace)'.strip('/') + '/' if '$(var namespace)'.strip('/') else ''&quot;)" type="str"/>
+      <param name="use_sim_time" value="$(var use_sim)"/>
+    </node>
+    <node unless="$(var use_sim)" pkg="controller_manager" exec="ros2_control_node" on_exit="shutdown">
+      <param from="$(find-pkg-share amazing_hand_driver)/config/controllers.yaml"/>
+      <param name="update_rate" value="$(eval 'int(float($(var control_rate)))')"/>
+    </node>
+    <node pkg="controller_manager" exec="spawner" args="joint_state_controller -c controller_manager --controller-ros-args '-r /joint_states:=joint_states -r /dynamic_joint_states:=dynamic_joint_states'"/>
+    <node pkg="controller_manager" exec="spawner" args="position_joint_trajectory_controller -c controller_manager -p $(find-pkg-share amazing_hand_driver)/config/controllers.yaml --controller-ros-args '-r ~/joint_trajectory:=~/command -r ~/controller_state:=~/state'"/>
+    <node if="$(var use_sim)" pkg="ros_gz_sim" exec="create" args="-world empty -topic robot_description -name amazing_hand"/>
+  </group>
+
+  <group if="$(var use_sim)">
+    <let name="server" value=""/>
+    <let unless="$(var gui)" name="server" value="-s"/>
+    <include file="$(find-pkg-share ros_gz_sim)/launch/gz_sim.launch.py">
+      <arg name="gz_args" value="-r $(var server) empty.sdf"/>
+      <arg name="on_exit_shutdown" value="true"/>
+    </include>
+    <node pkg="ros_gz_bridge" exec="parameter_bridge" args="/clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock"/>
+  </group>
+  <node if="$(var rqt)" pkg="rqt_joint_trajectory_controller" exec="rqt_joint_trajectory_controller" namespace="$(var namespace)">
+    <remap from="position_joint_trajectory_controller/controller_state" to="position_joint_trajectory_controller/state"/>
+    <remap from="position_joint_trajectory_controller/joint_trajectory" to="position_joint_trajectory_controller/command"/>
+  </node>
+  <include if="$(var use_rviz)" file="$(find-pkg-share amazing_hand_driver)/launch/hand_rviz.launch.xml"/>
+</launch>
