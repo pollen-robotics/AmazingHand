@@ -1,7 +1,43 @@
 # amazing_hand_ros
 
-A ROS 1 driver for AmazingHand with eight Feetech SCS0009 servos.
-It uses ros_control to accept finger trajectories and publish measured finger states.
+ROS 1 support for [AmazingHand](../README.md).
+
+## Packages
+
+| Package | Purpose | Usage guide |
+| --- | --- | --- |
+| [amazing_hand_driver](amazing_hand_driver/) | C++ ros_control hardware driver for the eight Feetech SCS0009 servos; accepts finger trajectories and publishes measured finger states | [Driver guide](#amazing_hand_driver) |
+
+## Workspace setup
+
+You need a Linux system with ROS 1, a catkin workspace, and `catkin_tools`.
+Place the AmazingHand repository in the workspace's `src` directory. The ROS
+packages are under `src/AmazingHand/amazing_hand_ros/`; for example, the driver
+package is at `src/AmazingHand/amazing_hand_ros/amazing_hand_driver`.
+
+The `amazing_hand_ros` directory contains this README and the package directories;
+it is not itself a ROS package. Its `COLCON_IGNORE` file excludes this ROS 1
+subtree from colcon discovery. Keep this file in the outer directory.
+
+Source your ROS 1 installation, install the requirements for the packages you
+want to use, and build them with catkin. For the currently available
+`amazing_hand_driver` package, run the following from the workspace root:
+
+```bash
+# Use the setup file for your ROS 1 installation.
+# Examples: /opt/ros/noetic/setup.bash or /opt/ros/one/setup.bash
+source /path/to/ros1/setup.bash
+
+rosdep install --from-paths src/AmazingHand/amazing_hand_ros/amazing_hand_driver --ignore-src -r -y
+catkin build amazing_hand_driver
+source devel/setup.bash
+```
+
+## amazing_hand_driver
+
+This section covers hardware preparation, operation, and configuration for
+`amazing_hand_driver`. The launch arguments, interfaces, coordinate definitions,
+and implementation details below belong to this package.
 
 Each of the four fingers has two controls: **flexion** (bending) and
 **abduction** (sideways motion). Commands use normalized levels rather than
@@ -9,25 +45,19 @@ motor angles or anatomical joint angles.
 
 The driver is written in C++. You can use it without running the Python demo first.
 
-## 1. Build the package
+Follow the preparation and startup steps before running the trajectory example.
+The later sections explain the coordinate system and provide reference material.
 
-You need a Linux system with ROS 1, a catkin workspace, and `catkin_tools`.
-Place the AmazingHand repository in the workspace's `src` directory, so this
-package is located at `src/AmazingHand/amazing_hand_ros`.
+- [Prepare the hand and calibration](#1-prepare-the-hand-and-calibration)
+- [Start the driver](#2-start-the-driver)
+- [Send a finger trajectory](#3-send-a-finger-trajectory)
+- [Understand levels and reachable poses](#4-understand-levels-and-reachable-poses)
+- [Configuration and ROS interfaces](#5-configuration-and-ros-interfaces)
+- [Troubleshooting](#6-troubleshooting)
+- [URDF and transmission details](#7-urdf-and-transmission-details)
+- [Test without a hand](#8-test-without-a-hand)
 
-Source your ROS 1 installation, then run the following from the workspace root:
-
-```bash
-# Use the setup file for your ROS 1 installation.
-# Examples: /opt/ros/noetic/setup.bash or /opt/ros/one/setup.bash
-source /path/to/ros1/setup.bash
-
-rosdep install --from-paths src/AmazingHand/amazing_hand_ros --ignore-src -r -y
-catkin build amazing_hand_ros
-source devel/setup.bash
-```
-
-## 2. Prepare the hand and calibration
+### 1. Prepare the hand and calibration
 
 Connect the assembled hand to a compatible serial bus adapter and its external
 power supply. Identify the adapter's device path, such as `/dev/ttyACM0`, and
@@ -37,7 +67,7 @@ using that port before starting the driver.
 The servos must already have unique IDs and a common baud rate (1,000,000 by
 default). This driver does not configure servo IDs or EEPROM settings.
 
-### If you have used PythonExample
+#### If you have used PythonExample
 
 Use the **calibrated values for your own hand** from `MiddlePos` in
 `AmazingHand_Demo.py` as the `middle_pos` launch argument. Keep the values in
@@ -46,7 +76,7 @@ degrees and in ascending physical servo ID order.
 Regardless of how you set up PythonExample, run this driver from a terminal
 with your ROS 1 installation and catkin workspace sourced as shown above.
 
-### If this is your first time using AmazingHand
+#### If this is your first time using AmazingHand
 
 Complete the hand's assembly, servo ID setup, and middle-position calibration
 before launching the driver. See the upstream
@@ -68,7 +98,7 @@ origin, not raw encoder counts. In this driver's conversion, encoder count 511
 is 0°, and one count is 300/1024°. Do not substitute another hand's calibration
 or assume that all eight values are zero.
 
-### Choose the servo mapping
+#### Choose the servo mapping
 
 | Launch setting | Index motors | Middle motors | Ring motors | Thumb motors | Order of `middle_pos` |
 | --- | --- | --- | --- | --- | --- |
@@ -90,14 +120,14 @@ Even with a custom mapping, `middle_pos` is always ordered by **ascending physic
 ID**, not by the order of `servo_ids`. The `side` argument selects the default ID
 mapping; it does not reverse the abduction sign.
 
-## 3. Start the driver
+### 2. Start the driver
 
 From a terminal with the workspace sourced, launch the driver with your
 calibration. The numbers below illustrate the syntax; **replace them with your
 hand's values**.
 
 ```bash
-roslaunch amazing_hand_ros amazing_hand.launch \
+roslaunch amazing_hand_driver amazing_hand.launch \
   port:=/dev/ttyACM0 \
   middle_pos:='[3, 0, -5, -8, -2, 5, -12, 0]'
 ```
@@ -107,7 +137,7 @@ When launched at the ROS root namespace, all hand interfaces are placed under
 `namespace` argument to choose a different namespace, for example:
 
 ```bash
-roslaunch amazing_hand_ros amazing_hand.launch \
+roslaunch amazing_hand_driver amazing_hand.launch \
   namespace:=robot/left_hand side:=2 port:=/dev/ttyACM0 \
   middle_pos:='[3, 0, -5, -8, -2, 5, -12, 0]'
 ```
@@ -146,7 +176,7 @@ Press Ctrl-C in the launch terminal to stop. By default, the driver sends a
 torque-disable command on normal shutdown. This command has no acknowledgment;
 delivery is not guaranteed if communication has failed.
 
-## 4. Send a finger trajectory
+### 3. Send a finger trajectory
 
 Each finger exposes two joint names:
 
@@ -213,7 +243,7 @@ Not every combination of flexion and abduction is reachable. In particular,
 avoid combining full flexion with full sideways motion. The next section explains
 the coordinate definition and motor limits.
 
-## 5. Understand levels and reachable poses
+### 4. Understand levels and reachable poses
 
 AmazingHand uses two motors per finger in a parallel mechanism. This driver
 represents their difference and sum as flexion and abduction levels; it does not
@@ -246,7 +276,7 @@ Positive abduction follows the motor-angle sum, so its physical direction depend
 on the finger and hand; it does not universally mean "spread away from the middle
 finger."
 
-### Command limits and feedback
+#### Command limits and feedback
 
 Commands are first clamped to the level ranges, then each calibrated motor angle
 is clamped to `motor_min_deg` / `motor_max_deg` (default: -90° / +90°).
@@ -280,7 +310,7 @@ a measured or guaranteed speed. Trajectory timing sets the requested rate of
 motion in level space. The URDF velocity limits are descriptive and are
 not enforced as software velocity or acceleration limiters by this driver.
 
-## 6. Configuration and ROS interfaces
+### 5. Configuration and ROS interfaces
 
 The `namespace` argument controls launch name resolution; it is not a private
 node parameter. The remaining arguments are loaded as private parameters of the
@@ -324,9 +354,9 @@ The following names assume the default namespace at the ROS root:
 
 Use the action interface when you need completion or failure feedback.
 Controller rates and trajectory tolerances are set in
-[config/controllers.yaml](config/controllers.yaml).
+[amazing_hand_driver/config/controllers.yaml](amazing_hand_driver/config/controllers.yaml).
 
-## 7. Troubleshooting
+### 6. Troubleshooting
 
 | Symptom | What to check |
 | --- | --- |
@@ -348,9 +378,9 @@ SyncWrite. Communication errors include the operation and register address;
 READ errors also identify the servo ID. Serial latency can reduce the actual
 loop rate below `control_rate`; this is not a hard-real-time driver.
 
-## 8. URDF and transmission details
+### 7. URDF and transmission details
 
-The [URDF](urdf/amazing_hand.urdf.xacro) contains nine empty links, eight level
+The [URDF](amazing_hand_driver/urdf/amazing_hand.urdf.xacro) contains nine empty links, eight level
 joints, and four transmissions. It has no visual or collision geometry.
 The joints use the URDF `revolute` type to expose bounded coordinates, but their
 values are levels: this model is not a geometric representation of the hand and
@@ -374,15 +404,20 @@ The hardware exposes `hardware_interface::PositionJointInterface`.
 The launch file loads `joint_state_controller/JointStateController` and
 `position_controllers/JointTrajectoryController`.
 
-## 9. Test without a hand
+### 8. Test without a hand
 
 From the workspace root:
 
 ```bash
 source devel/setup.bash
-catkin run_tests amazing_hand_ros
-catkin_test_results build/amazing_hand_ros/test_results
+catkin build amazing_hand_driver --catkin-make-args run_tests
+catkin_test_results build/amazing_hand_driver/test_results
 ```
+
+Use the command above to invoke the `run_tests` build target: some versions of
+`catkin test` (also aliased as `catkin run_tests`) honor the parent directory's
+`COLCON_IGNORE` and skip package discovery, whereas `catkin build` finds this
+package. Keep `COLCON_IGNORE` in place.
 
 Tests use generated pseudo-terminals, not physical serial devices. They cover
 packet validation, unit conversion, URDF transmission conversion, serial timeouts,
@@ -393,13 +428,16 @@ communication-fault handling. These checks do not replace validation on hardware
 To inspect launch parameters without starting the driver:
 
 ```bash
-roslaunch --dump-params amazing_hand_ros amazing_hand.launch \
+roslaunch --dump-params amazing_hand_driver amazing_hand.launch \
   middle_pos:='[3,0,-5,-8,-2,5,-12,0]'
 ```
 
-## License and protocol source
+## Licenses and attribution
 
-This package is licensed under [Apache-2.0](LICENSE). Its minimal SCS0009 protocol
+License and attribution information is provided within each package.
+
+The `amazing_hand_driver` package is licensed under
+[Apache-2.0](amazing_hand_driver/LICENSE). Its minimal SCS0009 protocol
 implementation adapts position/speed conversion, READ, and SyncWrite from
 [rustypot](https://github.com/pollen-robotics/rustypot).
-See [NOTICE](NOTICE) for attribution and the source revision.
+See [NOTICE](amazing_hand_driver/NOTICE) for attribution and the source revision.

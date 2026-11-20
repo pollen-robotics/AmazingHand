@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-#include <amazing_hand_ros/scs0009.h>
+#include <amazing_hand_driver/scs0009.h>
 #include <transmission_interface/differential_transmission_loader.h>
 #include <transmission_interface/transmission_parser.h>
 #include <urdf/model.h>
@@ -11,7 +11,7 @@
 #include <pty.h>
 #include <unistd.h>
 
-namespace ah = amazing_hand_ros;
+namespace ah = amazing_hand_driver;
 TEST(Protocol, KnownPackets) {
   EXPECT_EQ((ah::Bytes{255,255,1,4,2,56,2,190}), ah::packet(1,2,{56,2}));
   EXPECT_EQ((ah::Bytes{255,255,254,10,131,30,2,11,0,0,12,10,20,31}),

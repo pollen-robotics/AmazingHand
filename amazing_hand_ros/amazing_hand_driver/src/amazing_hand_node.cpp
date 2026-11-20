@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: Apache-2.0
-#include <amazing_hand_ros/scs0009.h>
+#include <amazing_hand_driver/scs0009.h>
 #include <controller_manager/controller_manager.h>
 #include <hardware_interface/robot_hw.h>
 #include <hardware_interface/joint_command_interface.h>
@@ -14,7 +14,7 @@
 #include <set>
 #include <stdexcept>
 
-namespace ah = amazing_hand_ros;
+namespace ah = amazing_hand_driver;
 namespace ti = transmission_interface;
 namespace {
 void require(bool condition, const std::string& message) {

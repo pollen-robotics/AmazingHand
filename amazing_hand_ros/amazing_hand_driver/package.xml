@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>amazing_hand_ros</name>
+  <name>amazing_hand_driver</name>
   <version>0.1.0</version>
   <description>ROS 1 ros_control driver for AmazingHand with normalized finger coordinates.</description>
   <maintainer email="pazeshunai@todo.todo">pazeshunai</maintainer>

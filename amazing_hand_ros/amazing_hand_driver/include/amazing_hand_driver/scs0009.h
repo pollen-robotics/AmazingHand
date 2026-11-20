@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace amazing_hand_ros {
+namespace amazing_hand_driver {
 using Bytes = std::vector<uint8_t>;
 constexpr double kPi = 3.14159265358979323846;
 constexpr double kStep = (300.0 * kPi / 180.0) / 1024.0;
@@ -34,4 +34,4 @@ class Scs0009 {
   int fd_ = -1;
   double timeout_;
 };
-}  // namespace amazing_hand_ros
+}  // namespace amazing_hand_driver

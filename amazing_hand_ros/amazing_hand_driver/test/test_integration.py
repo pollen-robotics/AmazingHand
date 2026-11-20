@@ -102,7 +102,7 @@ class DriverIntegration(unittest.TestCase):
         try:
             # Exercise the actual launch file, including parameters and spawner.
             driver = subprocess.Popen([
-                "roslaunch", "amazing_hand_ros", "amazing_hand.launch",
+                "roslaunch", "amazing_hand_driver", "amazing_hand.launch",
                 "port:=" + bus.path, "side:=" + str(side),
                 "middle_pos:=" + str(MIDDLE), "serial_timeout:=0.1",
             ] + ([] if side == 1 else ["namespace:=" + namespace]))
@@ -215,4 +215,4 @@ class DriverIntegration(unittest.TestCase):
 
 if __name__ == "__main__":
     rospy.init_node("driver_integration_test")
-    rostest.rosrun("amazing_hand_ros", "driver_integration", DriverIntegration)
+    rostest.rosrun("amazing_hand_driver", "driver_integration", DriverIntegration)

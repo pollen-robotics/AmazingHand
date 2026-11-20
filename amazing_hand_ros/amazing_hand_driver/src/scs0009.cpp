@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 // SCS0009 register conversions and protocol subset adapted from rustypot;
 // see NOTICE for source revision and attribution.
-#include <amazing_hand_ros/scs0009.h>
+#include <amazing_hand_driver/scs0009.h>
 #include <algorithm>
 #include <cerrno>
 #include <cmath>
@@ -13,7 +13,7 @@
 #include <termios.h>
 #include <unistd.h>
 
-namespace amazing_hand_ros {
+namespace amazing_hand_driver {
 namespace {
 void fail(const std::string& operation) {
   throw std::runtime_error(operation + ": " + std::strerror(errno));
@@ -168,4 +168,4 @@ void Scs0009::syncWrite(const std::vector<int>& ids, uint8_t address,
         " count=" + std::to_string(ids.size()) + ": " + e.what());
   }
 }
-}  // namespace amazing_hand_ros
+}  // namespace amazing_hand_driver
