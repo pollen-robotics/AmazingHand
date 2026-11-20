@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot name="amazing_hand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <!-- These joints are dimensionless coordinates, NOT anatomical angles.
+       Actuator positions are radians relative to middle_pos. -->
+  <link name="hand_base"/>
+  <xacro:macro name="finger" params="name">
+    <link name="${name}_flexion_link"/>
+    <link name="${name}_abduction_link"/>
+    <joint name="${name}_flexion_level" type="revolute">
+      <parent link="hand_base"/><child link="${name}_flexion_link"/>
+      <axis xyz="0 1 0"/><limit lower="0" upper="1" effort="1" velocity="2"/>
+    </joint>
+    <joint name="${name}_abduction_level" type="revolute">
+      <parent link="${name}_flexion_link"/><child link="${name}_abduction_link"/>
+      <axis xyz="0 0 1"/><limit lower="-1" upper="1" effort="1" velocity="2"/>
+    </joint>
+    <transmission name="${name}_transmission">
+      <type>transmission_interface/DifferentialTransmission</type>
+      <joint name="${name}_flexion_level">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <role>joint1</role>
+        <mechanicalReduction>${135*pi/180}</mechanicalReduction>
+        <offset>${45.0/135}</offset>
+      </joint>
+      <joint name="${name}_abduction_level">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <role>joint2</role>
+        <mechanicalReduction>${47*pi/180}</mechanicalReduction>
+        <offset>0</offset>
+      </joint>
+      <actuator name="${name}_motor_1">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <role>actuator1</role><mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+      <actuator name="${name}_motor_2">
+        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+        <role>actuator2</role><mechanicalReduction>-1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+  <xacro:finger name="index"/>
+  <xacro:finger name="middle"/>
+  <xacro:finger name="ring"/>
+  <xacro:finger name="thumb"/>
+</robot>

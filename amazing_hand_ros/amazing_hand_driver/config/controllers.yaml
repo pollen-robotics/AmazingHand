@@ -1,0 +1,28 @@
+joint_state_controller:
+  type: joint_state_controller/JointStateController
+  publish_rate: 50
+position_joint_trajectory_controller:
+  type: position_controllers/JointTrajectoryController
+  joints:
+    - index_flexion_level
+    - index_abduction_level
+    - middle_flexion_level
+    - middle_abduction_level
+    - ring_flexion_level
+    - ring_abduction_level
+    - thumb_flexion_level
+    - thumb_abduction_level
+  state_publish_rate: 50
+  action_monitor_rate: 20
+  allow_partial_joints_goal: false
+  constraints:
+    goal_time: 2.0
+    stopped_velocity_tolerance: 0.1
+    index_flexion_level: {trajectory: 0.2, goal: 0.03}
+    index_abduction_level: {trajectory: 0.2, goal: 0.03}
+    middle_flexion_level: {trajectory: 0.2, goal: 0.03}
+    middle_abduction_level: {trajectory: 0.2, goal: 0.03}
+    ring_flexion_level: {trajectory: 0.2, goal: 0.03}
+    ring_abduction_level: {trajectory: 0.2, goal: 0.03}
+    thumb_flexion_level: {trajectory: 0.2, goal: 0.03}
+    thumb_abduction_level: {trajectory: 0.2, goal: 0.03}
