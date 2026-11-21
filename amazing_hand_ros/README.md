@@ -224,7 +224,8 @@ Flexion 0 includes poses more extended than the demo's `OpenHand`.
 The sideways scale of 47° corresponds to half the motor-angle sum in the last row.
 Positive abduction follows the motor-angle sum, so its physical direction depends
 on the finger and hand; it does not universally mean "spread away from the middle
-finger."
+finger." For example, to spread the index finger away from the middle finger,
+use positive abduction on a right hand and negative abduction on a left hand.
 
 #### Command limits and feedback
 

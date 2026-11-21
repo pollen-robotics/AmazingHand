@@ -39,7 +39,7 @@
   </xacro:macro>
 
   <xacro:macro name="amazinghand_finger"
-               params="hand_name finger_name chirality parent finger_data covers">
+               params="hand_name finger_name parent finger_data covers">
 
     <xacro:property name="jname"   value="${hand_name}_${finger_name}" />
     <xacro:property name="flex_j"  value="${jname}_flexion" />
@@ -47,7 +47,6 @@
     <!-- The CAD reference is the zero-motor pose, at flexion_level = 1/3. -->
     <xacro:property name="flexion_scale" value="${pi / 2}"/>
     <xacro:property name="flexion_offset" value="${-flexion_scale / 3}"/>
-    <xacro:property name="abduction_sign" value="${-1 if chirality == 'left' else 1}"/>
 
     <xacro:amazinghand_link name="${jname}_base_link" link_data="${finger_data.gimbal}" covers="${covers}"/>
 
@@ -72,7 +71,8 @@
       <parent link="${jname}_mount_link"/>
       <child link="${jname}_base_link"/>
       <origin xyz="0 0 0" rpy="0 0 0"/>
-      <axis xyz="0 0 ${abduction_sign}"/>
+      <!-- Both hands use the same two-servo finger assembly and motor-sum sign. -->
+      <axis xyz="0 0 1"/>
       <limit lower="-0.5236" upper="0.5236" effort="1.0" velocity="3.14"/>
       <dynamics damping="0.01"/>
       <mimic joint="${finger_name}_abduction_level" multiplier="0.5236"/>

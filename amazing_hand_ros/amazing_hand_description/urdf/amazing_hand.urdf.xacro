@@ -7,7 +7,6 @@
   <xacro:include filename="finger.xacro"/>
 
   <xacro:property name="hand" value="$(arg hand_name)"/>
-  <xacro:property name="chirality" value="${hand.split('_')[0]}"/>
   <xacro:property name="hand_data" value="${xacro.load_yaml('../config/' + hand + '.yaml')}"/>
   <xacro:property name="covers" value="$(arg show_covers)"/>
 
@@ -16,7 +15,6 @@
   <xacro:amazinghand_finger
     hand_name="$(arg hand_name)"
     finger_name="index"
-    chirality="${chirality}"
     parent="$(arg hand_name)_palm_link"
     finger_data="${hand_data.fingers.index}"
     covers="${covers}"/>
@@ -24,7 +22,6 @@
   <xacro:amazinghand_finger
     hand_name="$(arg hand_name)"
     finger_name="middle"
-    chirality="${chirality}"
     parent="$(arg hand_name)_palm_link"
     finger_data="${hand_data.fingers.middle}"
     covers="${covers}"/>
@@ -32,7 +29,6 @@
   <xacro:amazinghand_finger
     hand_name="$(arg hand_name)"
     finger_name="ring"
-    chirality="${chirality}"
     parent="$(arg hand_name)_palm_link"
     finger_data="${hand_data.fingers.ring}"
     covers="${covers}"/>
@@ -40,7 +36,6 @@
   <xacro:amazinghand_finger
     hand_name="$(arg hand_name)"
     finger_name="thumb"
-    chirality="${chirality}"
     parent="$(arg hand_name)_palm_link"
     finger_data="${hand_data.fingers.thumb}"
     covers="${covers}"/>

@@ -7,6 +7,7 @@ import signal
 import subprocess
 import time
 import unittest
+import xml.etree.ElementTree as ET
 
 import actionlib
 import rospy
@@ -124,7 +125,16 @@ class DriverIntegration(unittest.TestCase):
                 self.assertEqual(config.params[private + "side"].value, side)
                 self.assertEqual(config.params[private + "servo_ids"].value, ids)
                 self.assertEqual(config.params[private + "middle_pos"].value, calibration)
-                self.assertIn(namespace + "/robot_description", config.params)
+                model = ET.fromstring(config.params[namespace + "/robot_description"].value)
+                hand = "right_hand" if side == 1 else "left_hand"
+                for finger in ("index", "middle", "ring", "thumb"):
+                    hinge = model.find(f"joint[@name='{hand}_{finger}_abduction']")
+                    mimic = hinge.find("mimic")
+                    self.assertEqual(mimic.get("joint"), finger + "_abduction_level")
+                    # Increasing both servo angles rotates the identical finger
+                    # assembly around its local +Z on either palm.
+                    axis_z = float(hinge.find("axis").get("xyz").split()[2])
+                    self.assertGreater(axis_z * float(mimic.get("multiplier")), 0)
                 self.assertIn(namespace + "/position_joint_trajectory_controller/type", config.params)
                 self.assertTrue(all(key.startswith(namespace + "/") for key in config.params))
                 self.assertTrue(all(node.namespace == namespace + "/" for node in config.nodes))
