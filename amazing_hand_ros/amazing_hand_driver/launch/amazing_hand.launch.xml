@@ -1,21 +1,21 @@
 <?xml version="1.0"?>
 <launch>
-  <arg name="use_sim" default="false" description="Run the hand in Gazebo Harmonic"/>
-  <arg name="gui" default="true" description="Show the Gazebo window"/>
-  <arg name="rqt" default="false" description="Show the trajectory sliders"/>
-  <arg name="use_rviz" default="false" description="Show the measured hand pose in RViz"/>
-  <arg name="namespace" default="amazing_hand"/>
-  <arg name="side" default="1" description="1 for right, 2 for left"/>
-  <arg name="middle_pos" default="[]" description="Required on hardware: eight calibration angles in ascending servo ID order"/>
-  <arg name="servo_ids" default=""/>
-  <arg name="port" default="/dev/ttyACM0"/>
-  <arg name="baudrate" default="1000000"/>
-  <arg name="serial_timeout" default="0.05"/>
-  <arg name="control_rate" default="50" description="Hardware control loop frequency in Hz; Gazebo uses config/controllers.yaml"/>
-  <arg name="goal_speed" default="3.0"/>
-  <arg name="motor_min_deg" default="-90"/>
-  <arg name="motor_max_deg" default="90"/>
-  <arg name="disable_torque_on_shutdown" default="true"/>
+  <arg name="side" default="1" description="Select the hand model and default servo IDs: 1 for right, 2 for left."/>
+  <arg name="servo_ids" default="" description="Eight unique physical IDs (0 to 253), in index, middle, ring, thumb order, motor 1 then 2. Defaults to the mapping for side."/>
+  <arg name="middle_pos" default="[]" description="Required for hardware: eight calibration angles for the connected hand, in degrees and in ascending physical servo ID order. Unused in simulation."/>
+  <arg name="namespace" default="amazing_hand" description="Namespace for the hand controllers, topics and trajectory action."/>
+  <arg name="port" default="/dev/ttyACM0" description="Serial adapter device path."/>
+  <arg name="baudrate" default="1000000" description="Serial baud rate in bits per second. Must match all eight servos."/>
+  <arg name="serial_timeout" default="0.05" description="Serial packet timeout in seconds (greater than 0, at most 5)."/>
+  <arg name="control_rate" default="50" description="Hardware control loop rate in Hz (integer, 1 to 1000). Gazebo uses config/ros2_controllers.yaml."/>
+  <arg name="goal_speed" default="3.0" description="Servo goal speed in rad/s. Use a positive speed that encodes to a nonzero register value."/>
+  <arg name="motor_min_deg" default="-90" description="Lower motor angle limit in degrees relative to the calibrated middle pose."/>
+  <arg name="motor_max_deg" default="90" description="Upper motor angle limit in degrees relative to the calibrated middle pose."/>
+  <arg name="disable_torque_on_shutdown" default="true" description="Request torque off when the hardware driver shuts down normally."/>
+  <arg name="use_sim" default="false" description="Run the hand in Gazebo Harmonic."/>
+  <arg name="gui" default="true" description="Show the Gazebo window when use_sim is true."/>
+  <arg name="use_rviz" default="false" description="Open RViz to display the hand pose."/>
+  <arg name="rqt" default="false" description="Open the rqt joint trajectory controller sliders."/>
 
   <let name="generate" value="$(exec-in-pkg hand_description amazing_hand_driver)"/>
   <let name="description" value="$(command '$(var generate) &quot;$(var side)&quot; &quot;$(var servo_ids)&quot; &quot;$(var middle_pos)&quot; $(var control_rate) &quot;$(var namespace)&quot; $(var use_sim) &quot;$(var port)&quot; $(var baudrate) $(var serial_timeout) $(var goal_speed) $(var motor_min_deg) $(var motor_max_deg) $(var disable_torque_on_shutdown)')"/>
@@ -27,11 +27,11 @@
       <param name="use_sim_time" value="$(var use_sim)"/>
     </node>
     <node unless="$(var use_sim)" pkg="controller_manager" exec="ros2_control_node" on_exit="shutdown">
-      <param from="$(find-pkg-share amazing_hand_driver)/config/controllers.yaml"/>
+      <param from="$(find-pkg-share amazing_hand_driver)/config/ros2_controllers.yaml"/>
       <param name="update_rate" value="$(eval 'int(float($(var control_rate)))')"/>
     </node>
     <node pkg="controller_manager" exec="spawner" args="joint_state_controller -c controller_manager --controller-ros-args '-r /joint_states:=joint_states -r /dynamic_joint_states:=dynamic_joint_states'"/>
-    <node pkg="controller_manager" exec="spawner" args="position_joint_trajectory_controller -c controller_manager -p $(find-pkg-share amazing_hand_driver)/config/controllers.yaml --controller-ros-args '-r ~/joint_trajectory:=~/command -r ~/controller_state:=~/state'"/>
+    <node pkg="controller_manager" exec="spawner" args="position_joint_trajectory_controller -c controller_manager -p $(find-pkg-share amazing_hand_driver)/config/ros2_controllers.yaml --controller-ros-args '-r ~/joint_trajectory:=~/command -r ~/controller_state:=~/state'"/>
     <node if="$(var use_sim)" pkg="ros_gz_sim" exec="create" args="-world empty -topic robot_description -name amazing_hand"/>
   </group>
 

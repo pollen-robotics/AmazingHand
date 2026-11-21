@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+import argparse
+from pathlib import Path
+
+from ament_index_python.packages import get_package_share_directory
+import xacro
+
+from hand_calibration import calibration
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    for name in ('side', 'servo_ids', 'middle_pos', 'control_rate', 'namespace', 'use_sim',
+                 'port', 'baudrate', 'serial_timeout', 'goal_speed', 'motor_min_deg',
+                 'motor_max_deg', 'disable_torque_on_shutdown'):
+        parser.add_argument(name)
+    args = parser.parse_args()
+    side = int(args.side)
+    if side not in (1, 2):
+        raise ValueError('side must be 1 (right) or 2 (left)')
+    rate = float(args.control_rate)
+    if not rate.is_integer() or not 1 <= rate <= 1000:
+        raise ValueError('control_rate must be an integer in [1,1000] Hz')
+    share = Path(get_package_share_directory('amazing_hand_driver'))
+    ns = args.namespace.strip('/')
+    mappings = {k: getattr(args, k) for k in ('port', 'baudrate', 'serial_timeout', 'goal_speed',
+                                     'motor_min_deg', 'motor_max_deg', 'disable_torque_on_shutdown')}
+    mappings.update(hand_name='right_hand' if side == 1 else 'left_hand',
+                    use_sim=args.use_sim.lower(), namespace='/' + ns)
+    if mappings['use_sim'] == 'false':
+        ids, angles = calibration(side, args.servo_ids, args.middle_pos)
+        by_id = dict(zip(sorted(ids), angles))
+        mappings.update(ids=','.join(map(str, ids)), middle=','.join(str(by_id[i]) for i in ids))
+    print(xacro.process_file(str(share / 'urdf/amazing_hand.ros2_control.xacro'),
+                             mappings=mappings).toxml())
+
+
+if __name__ == '__main__':
+    main()

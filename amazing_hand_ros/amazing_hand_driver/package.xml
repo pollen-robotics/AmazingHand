@@ -1,25 +1,57 @@
 <?xml version="1.0"?>
-<package format="2">
+<package format="3">
   <name>amazing_hand_driver</name>
   <version>0.1.0</version>
-  <description>ROS 1 ros_control driver for AmazingHand with normalized finger coordinates.</description>
-  <maintainer email="pazeshunai@todo.todo">pazeshunai</maintainer>
+  <description>AmazingHand hardware driver with normalized finger coordinates for ROS 1 and ROS 2.</description>
+  <maintainer email="pazeshunai@todo.todo">Shun Hasegawa</maintainer>
+  <maintainer email="pazeshunai@todo.todo">Michitoshi Tsubaki</maintainer>
   <license>Apache-2.0</license>
-  <buildtool_depend>catkin</buildtool_depend>
-  <depend>roscpp</depend>
-  <depend>hardware_interface</depend>
-  <depend>controller_manager</depend>
+  <build_depend>ros_environment</build_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
   <depend>transmission_interface</depend>
-  <depend>urdf</depend>
-  <exec_depend>joint_state_controller</exec_depend>
+  <depend condition="$ROS_VERSION == 2">feetech_ros2_driver</depend>
+  <depend>hardware_interface</depend>
+  <depend condition="$ROS_VERSION == 2">pluginlib</depend>
+  <depend condition="$ROS_VERSION == 2">rclcpp</depend>
+  <exec_depend>amazing_hand_description</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">controller_manager</exec_depend>
   <exec_depend>joint_trajectory_controller</exec_depend>
-  <exec_depend>roslaunch</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">joint_state_broadcaster</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">launch_xml</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">ros_gz_sim</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">ros_gz_bridge</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">gz_ros2_control</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">rviz2</exec_depend>
+  <exec_depend>rqt_joint_trajectory_controller</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">launch_ros</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">ament_index_python</exec_depend>
   <exec_depend>xacro</exec_depend>
-  <test_depend>rostest</test_depend>
-  <test_depend>rospy</test_depend>
-  <test_depend>actionlib</test_depend>
+  <exec_depend>python3-yaml</exec_depend>
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
+  <depend condition="$ROS_VERSION == 1">roscpp</depend>
+  <depend condition="$ROS_VERSION == 1">controller_manager</depend>
+  <depend condition="$ROS_VERSION == 1">urdf</depend>
+  <exec_depend condition="$ROS_VERSION == 1">joint_state_controller</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">roslaunch</exec_depend>
+  <test_depend condition="$ROS_VERSION == 1">rostest</test_depend>
+  <test_depend condition="$ROS_VERSION == 1">rospy</test_depend>
+  <test_depend condition="$ROS_VERSION == 1">actionlib</test_depend>
   <test_depend>control_msgs</test_depend>
   <test_depend>trajectory_msgs</test_depend>
   <test_depend>sensor_msgs</test_depend>
-  <test_depend>controller_manager_msgs</test_depend>
+  <test_depend condition="$ROS_VERSION == 1">controller_manager_msgs</test_depend>
+  <exec_depend condition="$ROS_VERSION == 1">rviz</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">gazebo_ros</exec_depend>
+  <depend condition="$ROS_VERSION == 1">gazebo_ros_control</depend>
+  <build_depend condition="$ROS_VERSION == 1">gazebo_dev</build_depend>
+  <exec_depend condition="$ROS_VERSION == 1">python3-rospkg</exec_depend>
+  <test_depend condition="$ROS_VERSION == 2">ament_cmake_ros</test_depend>
+  <test_depend condition="$ROS_VERSION == 2">ament_cmake_pytest</test_depend>
+  <test_depend condition="$ROS_VERSION == 2">rclpy</test_depend>
+  <export>
+    <gazebo_ros_control plugin="${prefix}/amazing_hand_hw_sim.xml"/>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+  </export>
 </package>

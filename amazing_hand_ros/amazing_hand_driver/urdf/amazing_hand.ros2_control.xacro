@@ -4,7 +4,7 @@
   <xacro:include filename="$(find amazing_hand_description)/urdf/amazing_hand.urdf.xacro"/>
   <xacro:if value="$(arg use_sim)">
     <gazebo><plugin filename="libgz_ros2_control-system.so" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
-      <parameters>$(find amazing_hand_driver)/config/controllers.yaml</parameters>
+      <parameters>$(find amazing_hand_driver)/config/ros2_controllers.yaml</parameters>
       <ros><namespace>$(arg namespace)</namespace></ros>
     </plugin></gazebo>
   </xacro:if>

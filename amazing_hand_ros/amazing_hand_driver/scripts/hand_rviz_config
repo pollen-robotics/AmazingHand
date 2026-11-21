@@ -4,17 +4,24 @@ from pathlib import Path
 import sys
 from tempfile import TemporaryFile
 
-from ament_index_python.packages import get_package_share_directory
 import yaml
 
 
 def main():
     namespace = os.environ['HAND_RVIZ_NAMESPACE']
-    template = Path(get_package_share_directory('amazing_hand_driver')) / 'config' / 'hand.rviz'
+    if os.environ['ROS_VERSION'] == '1':
+        import rospkg
+        template = Path(rospkg.RosPack().get_path('amazing_hand_driver')) / 'config/hand_ros1.rviz'
+    else:
+        from ament_index_python.packages import get_package_share_directory
+        template = Path(get_package_share_directory('amazing_hand_driver')) / 'config/hand_ros2.rviz'
     config = yaml.safe_load(template.read_text())
     manager = config['Visualization Manager']
     manager['Global Options']['Fixed Frame'] = '/'.join(filter(None, (namespace, 'hand_base')))
     manager['Displays'][0]['TF Prefix'] = namespace
+
+    if os.environ['ROS_VERSION'] == '1':
+        manager['Displays'][0]['Robot Description'] = '/' + '/'.join(filter(None, (namespace, 'robot_description')))
 
     # RViz inherits the open config file. The kernel removes it when RViz exits.
     with TemporaryFile(mode='w+') as stream:

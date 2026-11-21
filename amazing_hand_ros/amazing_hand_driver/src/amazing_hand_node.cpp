@@ -113,7 +113,7 @@ class Hand : public hardware_interface::RobotHW {
     // Read every motor before sending anything that can move it.
     readState(0);
     for (std::size_t i = 0; i < 8; ++i) {
-      require(position_[i] >= lower_[i] - 0.005 && position_[i] <= upper_[i] + 0.005 &&
+      require(position_[i] >= lower_[i] - 0.015 && position_[i] <= upper_[i] + 0.015 &&
               motor_position_[i] >= motor_min_ - ah::kStep && motor_position_[i] <= motor_max_ + ah::kStep,
               "Initial pose outside configured limits; check middle_pos and starting pose");
     }

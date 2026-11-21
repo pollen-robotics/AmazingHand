@@ -1,22 +1,41 @@
 <launch>
-  <arg name="namespace" default="amazing_hand" doc="Namespace for the hand nodes, controllers, topics, and parameters"/>
-  <!-- Required: never silently use another hand's calibration. -->
-  <arg name="middle_pos" doc="Eight angles in degrees, YAML list, ascending physical servo ID order"/>
-  <arg name="side" default="1"/>
-  <arg name="servo_ids" default="$(eval '[1,2,3,4,5,6,7,8]' if int(arg('side')) == 1 else '[15,16,13,14,11,12,17,18]')"/>
-  <arg name="port" default="/dev/ttyACM0"/>
-  <arg name="baudrate" default="1000000"/>
-  <arg name="serial_timeout" default="0.05"/>
-  <arg name="control_rate" default="50"/>
-  <arg name="goal_speed" default="3.0"/>
-  <arg name="motor_min_deg" default="-90"/>
-  <arg name="motor_max_deg" default="90"/>
-  <arg name="disable_torque_on_shutdown" default="true"/>
+  <arg name="side" default="1" doc="Select the hand model and default servo IDs: 1 for right, 2 for left."/>
+  <arg name="servo_ids" default="$(eval '[1,2,3,4,5,6,7,8]' if int(arg('side')) == 1 else '[15,16,13,14,11,12,17,18]')" doc="Eight unique physical IDs (0 to 253), in index, middle, ring, thumb order, motor 1 then 2. Defaults to the mapping for side."/>
+  <arg name="middle_pos" default="[]" doc="Required for hardware: eight calibration angles for the connected hand, in degrees and in ascending physical servo ID order. Unused in simulation."/>
+  <arg name="namespace" default="amazing_hand" doc="Namespace for the hand controllers, topics and trajectory action."/>
+  <arg name="port" default="/dev/ttyACM0" doc="Serial adapter device path."/>
+  <arg name="baudrate" default="1000000" doc="Serial baud rate in bits per second. Must match all eight servos."/>
+  <arg name="serial_timeout" default="0.05" doc="Serial packet timeout in seconds (greater than 0, at most 5)."/>
+  <arg name="control_rate" default="50" doc="Hardware control loop rate in Hz (greater than 0, at most 1000)."/>
+  <arg name="goal_speed" default="3.0" doc="Servo goal speed in rad/s. Use a positive speed that encodes to a nonzero register value."/>
+  <arg name="motor_min_deg" default="-90" doc="Lower motor angle limit in degrees relative to the calibrated middle pose."/>
+  <arg name="motor_max_deg" default="90" doc="Upper motor angle limit in degrees relative to the calibrated middle pose."/>
+  <arg name="disable_torque_on_shutdown" default="true" doc="Request torque off when the hardware driver shuts down normally."/>
+  <arg name="use_sim" default="false" doc="Run the hand in Gazebo Classic."/>
+  <arg name="gui" default="true" doc="Show the Gazebo window when use_sim is true."/>
+  <arg name="use_rviz" default="false" doc="Open RViz to display the hand pose."/>
+  <arg name="rqt" default="false" doc="Open the rqt joint trajectory controller sliders."/>
+  <include if="$(arg use_sim)" file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <!-- Gazebo Classic embeds an OGRE GLX window in Qt. Use X11 (XWayland
+         on Wayland desktops) so Qt supplies a compatible parent window. -->
+    <env if="$(arg gui)" name="QT_QPA_PLATFORM" value="xcb"/>
+  </include>
   <group ns="$(arg namespace)">
-    <param name="robot_description" command="$(find xacro)/xacro '$(find amazing_hand_driver)/urdf/amazing_hand.urdf.xacro'"/>
-    <rosparam command="load" file="$(find amazing_hand_driver)/config/controllers.yaml"/>
-    <node pkg="amazing_hand_driver" type="amazing_hand_node" name="amazing_hand" output="screen" required="true">
-      <rosparam param="middle_pos" subst_value="true">$(arg middle_pos)</rosparam>
+    <arg name="hand_name" value="$(eval 'left_hand' if int(arg('side')) == 2 else 'right_hand')"/>
+    <param name="robot_description" command="$(find xacro)/xacro '$(find amazing_hand_driver)/urdf/amazing_hand.urdf.xacro' hand_name:=$(arg hand_name) use_sim:=$(arg use_sim) namespace:=$(arg namespace)"/>
+    <rosparam command="load" file="$(find amazing_hand_driver)/config/ros_controllers.yaml"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
+      <param name="tf_prefix" value="$(eval arg('namespace').strip('/'))"/>
+    </node>
+    <node if="$(arg use_sim)" pkg="gazebo_ros" type="spawn_model" name="spawn_hand"
+          args="-urdf -param robot_description -model $(arg hand_name)"/>
+    <node if="$(arg rqt)" pkg="rqt_joint_trajectory_controller" type="rqt_joint_trajectory_controller" name="rqt_joint_trajectory_controller"/>
+    <include if="$(arg use_rviz)" file="$(find amazing_hand_driver)/launch/hand_rviz.launch">
+      <arg name="namespace" value="$(arg namespace)"/>
+    </include>
+    <node unless="$(arg use_sim)" pkg="amazing_hand_driver" type="amazing_hand_node" name="amazing_hand" output="screen" required="true">
+      <param name="middle_pos" type="yaml" command="'$(find amazing_hand_driver)/scripts/hand_calibration.py' $(arg side) '$(arg servo_ids)' '$(arg middle_pos)'"/>
       <rosparam param="servo_ids" subst_value="true">$(arg servo_ids)</rosparam>
       <param name="side" value="$(arg side)"/>
       <param name="port" value="$(arg port)"/>
