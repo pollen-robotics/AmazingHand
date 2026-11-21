@@ -1,0 +1,51 @@
+#!/usr/bin/env python3
+"""Run one hand motion sequence.
+
+The ROS 1 and ROS 2 examples are separate to keep each one short and easy to follow.
+"""
+import rclpy
+from action_msgs.msg import GoalStatus
+from control_msgs.action import FollowJointTrajectory
+from rclpy.action import ActionClient
+from rclpy.duration import Duration
+from rclpy.utilities import remove_ros_args
+from trajectory_msgs.msg import JointTrajectoryPoint
+
+from hand_motion_poses import JOINT_NAMES, options, poses
+
+
+def main():
+    args = options(remove_ros_args()[1:])
+    rclpy.init()
+    node = rclpy.create_node("hand_motion_demo")
+    try:
+        action = args.namespace.rstrip("/") + "/position_joint_trajectory_controller/follow_joint_trajectory"
+        client = ActionClient(node, FollowJointTrajectory, action)
+        if not client.wait_for_server(timeout_sec=15):
+            raise SystemExit(f"Trajectory controller unavailable at {action}")
+
+        for name, seconds, fingers in poses(args.side):
+            goal = FollowJointTrajectory.Goal()
+            goal.trajectory.joint_names = JOINT_NAMES
+            point = JointTrajectoryPoint()
+            point.positions = [level for pair in fingers for level in pair]
+            point.time_from_start = Duration(seconds=seconds).to_msg()
+            goal.trajectory.points = [point]
+            node.get_logger().info(name)
+            sent = client.send_goal_async(goal)
+            rclpy.spin_until_future_complete(node, sent)
+            handle = sent.result()
+            if not handle.accepted:
+                raise SystemExit(f"{name} was rejected")
+            finished = handle.get_result_async()
+            rclpy.spin_until_future_complete(node, finished)
+            reply = finished.result()
+            if reply.status != GoalStatus.STATUS_SUCCEEDED or reply.result.error_code != 0:
+                raise SystemExit(f"{name} failed: {reply.result}")
+    finally:
+        node.destroy_node()
+        rclpy.try_shutdown()
+
+
+if __name__ == "__main__":
+    main()

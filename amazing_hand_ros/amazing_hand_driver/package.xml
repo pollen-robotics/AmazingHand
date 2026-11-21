@@ -35,10 +35,12 @@
   <exec_depend condition="$ROS_VERSION == 1">joint_state_controller</exec_depend>
   <exec_depend condition="$ROS_VERSION == 1">roslaunch</exec_depend>
   <test_depend condition="$ROS_VERSION == 1">rostest</test_depend>
-  <test_depend condition="$ROS_VERSION == 1">rospy</test_depend>
-  <test_depend condition="$ROS_VERSION == 1">actionlib</test_depend>
-  <test_depend>control_msgs</test_depend>
-  <test_depend>trajectory_msgs</test_depend>
+  <exec_depend condition="$ROS_VERSION == 1">rospy</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">actionlib</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 1">actionlib_msgs</exec_depend>
+  <exec_depend condition="$ROS_VERSION == 2">action_msgs</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
   <test_depend>sensor_msgs</test_depend>
   <test_depend condition="$ROS_VERSION == 1">controller_manager_msgs</test_depend>
   <exec_depend condition="$ROS_VERSION == 1">rviz</exec_depend>
@@ -48,7 +50,7 @@
   <exec_depend condition="$ROS_VERSION == 1">python3-rospkg</exec_depend>
   <test_depend condition="$ROS_VERSION == 2">ament_cmake_ros</test_depend>
   <test_depend condition="$ROS_VERSION == 2">ament_cmake_pytest</test_depend>
-  <test_depend condition="$ROS_VERSION == 2">rclpy</test_depend>
+  <exec_depend condition="$ROS_VERSION == 2">rclpy</exec_depend>
   <export>
     <gazebo_ros_control plugin="${prefix}/amazing_hand_hw_sim.xml"/>
     <build_type condition="$ROS_VERSION == 1">catkin</build_type>

@@ -149,6 +149,31 @@ shows the fingers following a flexion command in Gazebo and RViz.
 | `use_sim`, `gui` | `false`, `true` | Run Gazebo and show its window. Set `gui:=false` for headless simulation. |
 | `use_rviz`, `rqt` | `false`, `false` | Open the hand pose display and trajectory sliders, respectively |
 
+### Run the motion demo
+
+With the driver running, source the same workspace in a second terminal and run
+the command for your ROS version. Try it in simulation first. On hardware the
+command moves all four fingers. The demo opens and closes the hand, spreads the
+fingers, points and wags the index finger, makes OK, victory, scissors and pinch
+gestures, then finishes with the hand open.
+
+**ROS 1** ([example script](amazing_hand_driver/scripts/hand_motion_demo_ros1))
+
+```bash
+rosrun amazing_hand_driver hand_motion_demo_ros1 --side 1
+```
+
+**ROS 2** ([example script](amazing_hand_driver/scripts/hand_motion_demo_ros2))
+
+```bash
+ros2 run amazing_hand_driver hand_motion_demo_ros2 --side 1
+```
+
+Both examples use `--side 1` to match the right-hand launch commands above.
+If you launched the driver with `side:=2`, use `--side 2` so the sideways
+gestures follow the left hand's orientation. The default namespace is
+`/amazing_hand`. For a custom namespace, pass e.g. `--namespace /robot/left_hand`.
+
 ### Send a finger trajectory and read feedback
 
 In another terminal, source the same workspace. Try the following in simulation
