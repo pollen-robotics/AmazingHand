@@ -112,18 +112,19 @@ then enable the sliders and adjust the desired finger's flexion or abduction.
 #### Simulation
 
 Gazebo runs the same eight-joint trajectory interface without a serial port or
-calibration. Choose the command for your simulator.
+calibration. Both examples start a right hand with RViz and rqt. Use
+`side:=2` to simulate a left hand.
 
 **ROS 1 · Gazebo Classic**
 
 ```bash
-roslaunch amazing_hand_driver amazing_hand.launch use_sim:=true use_rviz:=true rqt:=true
+roslaunch amazing_hand_driver amazing_hand.launch side:=1 use_sim:=true use_rviz:=true rqt:=true
 ```
 
 **ROS 2 · Gazebo Harmonic**
 
 ```bash
-ros2 launch amazing_hand_driver amazing_hand.launch.xml use_sim:=true use_rviz:=true rqt:=true
+ros2 launch amazing_hand_driver amazing_hand.launch.xml side:=1 use_sim:=true use_rviz:=true rqt:=true
 ```
 
 In rqt, select `/amazing_hand/controller_manager` and
