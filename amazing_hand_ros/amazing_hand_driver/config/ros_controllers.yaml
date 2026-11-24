@@ -19,10 +19,10 @@ position_joint_trajectory_controller:
     goal_time: 2.0
     stopped_velocity_tolerance: 0.1
     index_flexion_level: {trajectory: 0.2, goal: 0.03}
-    index_abduction_level: {trajectory: 0.2, goal: 0.03}
+    index_abduction_level: {trajectory: 0.2, goal: 0.15}
     middle_flexion_level: {trajectory: 0.2, goal: 0.03}
-    middle_abduction_level: {trajectory: 0.2, goal: 0.03}
+    middle_abduction_level: {trajectory: 0.2, goal: 0.15}
     ring_flexion_level: {trajectory: 0.2, goal: 0.03}
-    ring_abduction_level: {trajectory: 0.2, goal: 0.03}
+    ring_abduction_level: {trajectory: 0.2, goal: 0.15}
     thumb_flexion_level: {trajectory: 0.2, goal: 0.03}
-    thumb_abduction_level: {trajectory: 0.2, goal: 0.03}
+    thumb_abduction_level: {trajectory: 0.2, goal: 0.15}

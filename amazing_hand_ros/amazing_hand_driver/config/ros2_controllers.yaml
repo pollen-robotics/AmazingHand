@@ -27,25 +27,25 @@
         goal: 0.03
       index_abduction_level:
         trajectory: 0.2
-        goal: 0.03
+        goal: 0.15
       middle_flexion_level:
         trajectory: 0.2
         goal: 0.03
       middle_abduction_level:
         trajectory: 0.2
-        goal: 0.03
+        goal: 0.15
       ring_flexion_level:
         trajectory: 0.2
         goal: 0.03
       ring_abduction_level:
         trajectory: 0.2
-        goal: 0.03
+        goal: 0.15
       thumb_flexion_level:
         trajectory: 0.2
         goal: 0.03
       thumb_abduction_level:
         trajectory: 0.2
-        goal: 0.03
+        goal: 0.15
     command_interfaces:
     - position
     state_interfaces:
