@@ -1,0 +1,3 @@
+<library path="lib/libamazing_hand_hw_sim">
+  <class name="amazing_hand_driver/HandHWSim" type="amazing_hand_driver::HandHWSim" base_class_type="gazebo_ros_control::RobotHWSim"/>
+</library>

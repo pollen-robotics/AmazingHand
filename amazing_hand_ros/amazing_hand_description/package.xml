@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>amazing_hand_description</name>
+  <version>0.1.0</version>
+  <description>AmazingHand robot descriptions, meshes and simulation models.</description>
+  <maintainer email="pazeshunai@todo.todo">Shun Hasegawa</maintainer>
+  <maintainer email="pazeshunai@todo.todo">Michitoshi Tsubaki</maintainer>
+  <license>Apache-2.0</license>
+  <license>CC-BY-4.0</license>
+  <build_depend>ros_environment</build_depend>
+  <buildtool_depend condition="$ROS_VERSION == 1">catkin</buildtool_depend>
+  <buildtool_depend condition="$ROS_VERSION == 2">ament_cmake</buildtool_depend>
+  <exec_depend>xacro</exec_depend>
+  <export>
+    <build_type condition="$ROS_VERSION == 1">catkin</build_type>
+    <build_type condition="$ROS_VERSION == 2">ament_cmake</build_type>
+    <gazebo_ros gazebo_model_path="${prefix}/.."/>
+  </export>
+</package>

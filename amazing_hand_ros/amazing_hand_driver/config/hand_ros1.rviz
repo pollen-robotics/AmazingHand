@@ -1,0 +1,18 @@
+Panels:
+  - Class: rviz/Displays
+    Name: Displays
+Visualization Manager:
+  Global Options:
+    Fixed Frame: amazing_hand/hand_base
+  Displays:
+    - Class: rviz/RobotModel
+      Name: Hand
+      Enabled: true
+      TF Prefix: amazing_hand
+      Robot Description: robot_description
+  Views:
+    Current:
+      Class: rviz/Orbit
+      Distance: 0.45
+      Pitch: 0.45
+      Yaw: 0.8

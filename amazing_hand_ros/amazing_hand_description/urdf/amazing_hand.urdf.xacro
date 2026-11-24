@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="amazinghand" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:arg name="hand_name"   default="right_hand"/>
+  <xacro:arg name="show_covers" default="true"/>
+  <xacro:arg name="use_sim" default="false"/>
+  <xacro:include filename="finger.xacro"/>
+
+  <xacro:property name="hand" value="$(arg hand_name)"/>
+  <xacro:property name="hand_data" value="${xacro.load_yaml('../config/' + hand + '.yaml')}"/>
+  <xacro:property name="covers" value="$(arg show_covers)"/>
+
+  <xacro:amazinghand_link name="${hand}_palm_link" link_data="${hand_data.palm}" covers="${covers}"/>
+
+  <xacro:amazinghand_finger
+    hand_name="$(arg hand_name)"
+    finger_name="index"
+    parent="$(arg hand_name)_palm_link"
+    finger_data="${hand_data.fingers.index}"
+    covers="${covers}"/>
+
+  <xacro:amazinghand_finger
+    hand_name="$(arg hand_name)"
+    finger_name="middle"
+    parent="$(arg hand_name)_palm_link"
+    finger_data="${hand_data.fingers.middle}"
+    covers="${covers}"/>
+
+  <xacro:amazinghand_finger
+    hand_name="$(arg hand_name)"
+    finger_name="ring"
+    parent="$(arg hand_name)_palm_link"
+    finger_data="${hand_data.fingers.ring}"
+    covers="${covers}"/>
+
+  <xacro:amazinghand_finger
+    hand_name="$(arg hand_name)"
+    finger_name="thumb"
+    parent="$(arg hand_name)_palm_link"
+    finger_data="${hand_data.fingers.thumb}"
+    covers="${covers}"/>
+
+  <joint name="palm_mount" type="fixed"><parent link="hand_base"/><child link="${hand}_palm_link"/></joint>
+  <xacro:if value="$(arg use_sim)">
+    <link name="world"/>
+    <joint name="wrist_anchor" type="fixed">
+      <parent link="world"/><child link="hand_base"/><origin xyz="0 0 0.2"/>
+    </joint>
+  </xacro:if>
+  <link name="hand_base"/>
+  <!-- Gazebo retains the two normalized coordinate joints when their links have inertia. -->
+  <xacro:macro name="level_link" params="name">
+    <link name="${name}">
+      <xacro:if value="$(arg use_sim)">
+        <inertial><mass value="0.001"/>
+          <inertia ixx="1e-6" iyy="1e-6" izz="1e-6" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+      </xacro:if>
+    </link>
+  </xacro:macro>
+  <xacro:macro name="finger" params="name">
+    <xacro:level_link name="${name}_flexion_link"/>
+    <xacro:level_link name="${name}_abduction_link"/>
+    <joint name="${name}_flexion_level" type="revolute">
+      <parent link="hand_base"/><child link="${name}_flexion_link"/>
+      <axis xyz="0 1 0"/><limit lower="0" upper="1" effort="1" velocity="2"/>
+    </joint>
+    <joint name="${name}_abduction_level" type="revolute">
+      <parent link="${name}_flexion_link"/><child link="${name}_abduction_link"/>
+      <axis xyz="0 0 1"/><limit lower="-1" upper="1" effort="1" velocity="2"/>
+    </joint>
+  </xacro:macro>
+  <xacro:finger name="index"/>
+  <xacro:finger name="middle"/>
+  <xacro:finger name="ring"/>
+  <xacro:finger name="thumb"/>
+</robot>

@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+"""Run one hand motion sequence.
+
+The ROS 1 and ROS 2 examples are separate to keep each one short and easy to follow.
+"""
+import actionlib
+import rospy
+from actionlib_msgs.msg import GoalStatus
+from control_msgs.msg import FollowJointTrajectoryAction, FollowJointTrajectoryGoal
+from trajectory_msgs.msg import JointTrajectoryPoint
+
+from hand_motion_poses import JOINT_NAMES, options, poses
+
+
+def main():
+    args = options(rospy.myargv()[1:])
+    rospy.init_node("hand_motion_demo")
+    action = args.namespace.rstrip("/") + "/position_joint_trajectory_controller/follow_joint_trajectory"
+    client = actionlib.SimpleActionClient(action, FollowJointTrajectoryAction)
+    if not client.wait_for_server(rospy.Duration(15)):
+        raise SystemExit(f"Trajectory controller unavailable at {action}")
+
+    for name, seconds, fingers in poses(args.side):
+        goal = FollowJointTrajectoryGoal()
+        goal.trajectory.joint_names = JOINT_NAMES
+        point = JointTrajectoryPoint()
+        point.positions = [level for pair in fingers for level in pair]
+        point.time_from_start = rospy.Duration.from_sec(seconds)
+        goal.trajectory.points = [point]
+        rospy.loginfo(name)
+        client.send_goal(goal)
+        client.wait_for_result()
+        result = client.get_result()
+        if client.get_state() != GoalStatus.SUCCEEDED or result is None or result.error_code != 0:
+            raise SystemExit(f"{name} failed: {client.get_goal_status_text()} ({result})")
+
+
+if __name__ == "__main__":
+    main()

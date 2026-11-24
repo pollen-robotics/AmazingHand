@@ -1,0 +1,3 @@
+<library path="amazing_hand_hardware_interface">
+  <class name="amazing_hand_driver/AmazingHandHardwareInterface" type="amazing_hand_driver::AmazingHandHardwareInterface" base_class_type="hardware_interface::SystemInterface"/>
+</library>
